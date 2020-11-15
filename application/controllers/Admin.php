@@ -25,9 +25,19 @@ class Admin extends CI_Controller {
         $this->load->model('DatacenterModel');
 		$judul['title'] = 'Halaman Admin - ';
 
-        $this->load->view('ViewHeadAdmin',$judul);
-		$this->load->view('ViewHomeAdmin');
-		$this->load->view('ViewFooterAdmin');
+		$leveluser = $this->session->userdata('level_user');
+
+		if ($leveluser == '1'){
+			$this->load->view('ViewHeadAdmin',$judul);
+			$this->load->view('ViewHomeAdmin');
+			$this->load->view('ViewFooterAdmin');
+		}else if($leveluser == '2'){
+			redirect('Teknisi');
+		}else if($leveluser == NULL ){
+			redirect('');
+		}
+
+       
 
 	} 
 	

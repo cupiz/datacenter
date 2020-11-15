@@ -34,9 +34,19 @@ class Teknisi extends CI_Controller {
 		$id_user = $this->session->userdata('id_user');
 		$data['history'] = $this->DatacenterModel->tampilhistoryuser($id_user);
 
-        $this->load->view('ViewHeadTeknisi',$judul);
-		$this->load->view('ViewTeknisi',$data);
-		$this->load->view('ViewFooterTeknisi');
+		$leveluser = $this->session->userdata('level_user');
+
+		if ($leveluser == '2'){
+			$this->load->view('ViewHeadTeknisi',$judul);
+			$this->load->view('ViewTeknisi',$data);
+			$this->load->view('ViewFooterTeknisi');
+		}else if($leveluser == '1'){
+			redirect('Admin');
+		}else if($leveluser == NULL ){
+			redirect('');
+		}
+
+        
 
     } 
     
