@@ -48,7 +48,7 @@
                                     <?php echo $baris->jns_kabel; ?>
                                     </td>
                                     <td>
-                                    <?php echo $baris->nama_kabel; ?>
+                                    <?php echo $baris->nama_server; ?>
                                     </td>
                                     <td>
                                     <?php echo $baris->ket_kabel; ?>

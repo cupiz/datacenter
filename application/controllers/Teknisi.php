@@ -78,6 +78,7 @@ class Teknisi extends CI_Controller {
         $this->load->model('DatacenterModel');
 		$judul['title'] = 'Detail Prosesor - ';
 
+		
 		$data['tampil'] = $this->DatacenterModel->tampilprosesordetail($id_prosesor);
 
 

@@ -26,7 +26,7 @@
             <section id="basic-horizontal-layouts">
                 <div class="row match-height">
                     <div class="col-md-12 col-12">
-                        <div class="card" style="">
+                        <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">Form Ubah User</h4>
                             </div>
@@ -106,8 +106,10 @@
                                                 <?php } ?>
                                                 
                                                 <div class="col-md-8 offset-md-4">
-                                                    <button type="submit" class="btn btn-primary mr-1 mb-1 waves-effect waves-light">Submit</button>
-                                                    <button type="cancel" class="btn btn-danger mr-1 mb-1 waves-effect waves-light">Cancel</button>
+                                                    
+                                                <button type="submit" class="btn btn-primary mr-1 mb-1 waves-effect waves-light">SIMPAN</button>
+                                                <button type="button" class="btn btn-primary mr-1 mb-1 waves-effect waves-light"><a href="javascript:window.history.go(-1);" style="color:white;">CANCEL</a></button>
+                                                
                                                 </div>
                                             </div>
                                         </div>

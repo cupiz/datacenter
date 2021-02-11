@@ -26,7 +26,7 @@
             <section id="basic-horizontal-layouts">
                 <div class="row match-height">
                     <div class="col-md-12 col-12">
-                        <div class="card" style="">
+                        <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">Form Tambah User</h4>
                             </div>

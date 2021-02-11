@@ -72,10 +72,12 @@ class Login extends CI_Controller {
 				$id_user = $this->DatacenterModel->cekiduser($username);
 				$nama_user = $this->DatacenterModel->ceknamauser($id_user);
 				$level_user = $this->DatacenterModel->cekleveluser($id_user);
+				$photo = $this->DatacenterModel->cekphotouser($id_user);
 				$this->session->set_userdata('id_user',$id_user);
 				$this->session->set_userdata('nama_user',$nama_user);
 				$this->session->set_userdata('username',$username);
 				$this->session->set_userdata('level_user',$level_user);
+				$this->session->set_userdata('photo',$photo);
 				$this->session->set_flashdata('login','yes');
 				$this->DatacenterModel->lastlogin($id_user);
                 if ($level_user == '1'){

@@ -50,6 +50,14 @@
                   return $row->level_user;
                   }
               }
+          
+          public function cekphotouser($id_user){  
+            $data = $this->db->query("Select photo from tb_user where id_user='$id_user'");
+              foreach($data->result() as $row)
+                  {
+                  return $row->photo;
+                  }
+              }
 
           public function tampiljmlserver(){
               return $this->db->query("Select count(id_server) as jmlserver from tb_server")->result();
@@ -78,7 +86,9 @@
 
 
           //---AKUN ADMIN--//
-            
+            public function tampilakunadmin($id_user){
+              return $this->db->query("Select * from tb_user where id_user = '$id_user'")->result();
+              }
             public function tampiluser(){
             return $this->db->query("Select * from tb_user")->result();
             }
@@ -108,8 +118,60 @@
                 }
 
             public function tampilprosesor(){
-                  return $this->db->query("Select * from tb_prosesor")->result();
+              return $this->db->query("Select * from tb_prosesor join tb_server on tb_prosesor.id_server = tb_server.id_server join tb_rack on tb_server.id_rack = tb_rack.id_rack join tb_lemari on tb_rack.id_lemari = tb_lemari.id_lemari")->result();
               }
+
+            public function hapusprosesor($id_prosesor){
+            $this->db->query("delete from tb_prosesor where id_prosesor='$id_prosesor'");
+            }
+  
+            public function tambahprosesor($data){
+                $this->db->query("insert into tb_prosesor values('','$data[0]','$data[1]','$data[2]','$data[3]','GANTI')");
+            }
+            public function ubahprosesor($id_prosesor){
+              return $this->db->query("Select * from tb_prosesor where id_prosesor = '$id_prosesor'")->result();
+              }
+            public function ubahprosesor1($data){
+                $this->db->query("update tb_prosesor set id_server ='$data[0]', nama_prosesor='$data[1]',jml_core='$data[2]',ket_prosesor='$data[3]' where id_prosesor = '$data[4]' ");
+            }
+
+            public function tampilram(){
+              return $this->db->query("Select * from tb_ram join tb_server on tb_ram.id_server = tb_server.id_server join tb_rack on tb_server.id_rack = tb_rack.id_rack join tb_lemari on tb_rack.id_lemari = tb_lemari.id_lemari")->result();
+              }
+
+            public function hapusram($id_ram){
+            $this->db->query("delete from tb_ram where id_ram='$id_ram'");
+            }
+  
+            public function tambahram($data){
+                $this->db->query("insert into tb_ram values('','$data[0]','$data[1]','$data[2]','$data[3]','GANTI')");
+            }
+            public function ubahram($id_ram){
+              return $this->db->query("Select * from tb_ram where id_ram = '$id_ram'")->result();
+              }
+            public function ubahram1($data){
+                $this->db->query("update tb_ram set id_server ='$data[0]', nama_ram='$data[1]',ukuran_ram='$data[2]',ket_ram='$data[3]' where id_ram = '$data[4]' ");
+            }
+
+            // storage
+            public function tampilstorage(){
+              return $this->db->query("Select * from tb_storage join tb_server on tb_storage.id_server = tb_server.id_server join tb_rack on tb_server.id_rack = tb_rack.id_rack join tb_lemari on tb_rack.id_lemari = tb_lemari.id_lemari")->result();
+              }
+
+            public function hapusstorage($id_storage){
+            $this->db->query("delete from tb_storage where id_storage='$id_storage'");
+            }
+  
+            public function tambahstorage($data){
+                $this->db->query("insert into tb_storage values('','$data[0]','$data[1]','$data[2]','$data[3]','$data[4]','GANTI')");
+            }
+            public function ubahstorage($id_storage){
+              return $this->db->query("Select * from tb_storage where id_storage = '$id_storage'")->result();
+              }
+            public function ubahstorage1($data){
+                $this->db->query("update tb_storage set id_server ='$data[0]', nama_storage='$data[1]',ukuran_storage='$data[2]',tipe_storage='$data[3]',ket_storage='$data[4]' where id_storage = '$data[5]' ");
+            }
+
 
 
                 

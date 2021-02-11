@@ -25,7 +25,7 @@
                                             <img src="<?php echo base_url();?>assets/app-assets/images/portrait/small/avatar-s-18.jpg" alt="users avatar" class="users-avatar-shadow rounded" height="90" width="90">
                                         </a>
                                         <div class="media-body mt-50">
-                                            <h4 class="media-heading">Angelo Sashington</h4>
+                                            <h4 class="media-heading"><?php echo $this->session->userdata('nama_user'); ?></h4>
                                             <div class="col-12 d-flex mt-1 px-0">
                                                 <a class="btn btn-primary d-none d-sm-block mr-75"><input type="file" accept="image/*" style="position: absolute;
                                                     top: 0;
@@ -47,33 +47,38 @@
                                     </div>
                                     <!-- users edit media object ends -->
                                     <!-- users edit account form start -->
-                                    <form novalidate>
+                                    <form method="post" action="<?php echo base_url();?>Admin/prosesubahuser">
+                                    
                                         <div class="row">
                                             <div class="col-12">
+                                            <?php
+	                            					foreach ($tampilakun as $baris) {  ?>
                                                 <div class="form-group">
                                                     <div class="controls">
                                                         <label>Username</label>
-                                                        <input type="text" class="form-control" placeholder="Username" value="adoptionism744" required data-validation-required-message="username harus di isi">
+                                                        <input type="text" class="form-control" name="username" placeholder="Username" value="<?php echo $baris->username; ?>" required data-validation-required-message="Username harus di isi">
+                                                        <input type="hidden" class="form-control" name="id_user" placeholder="ERROR" value="<?php echo $baris->id_user; ?>">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="controls">
                                                         <label>Nama</label>
-                                                        <input type="text" class="form-control" placeholder="Name" value="Angelo Sashington" required data-validation-required-message="Nama harus di isi">
+                                                        <input type="text" class="form-control" name="nama_user" placeholder="Nama" value="<?php echo $baris->nama_user; ?>" required data-validation-required-message="Nama harus di isi">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="controls">
                                                         <label>E-mail</label>
-                                                        <input type="email" class="form-control" placeholder="Email" value="angelo@sashington.com" required data-validation-required-message="Email harus di isi">
+                                                        <input type="email" class="form-control" name="email" placeholder="Email" value="<?php echo $baris->email; ?>" required data-validation-required-message="Email harus di isi">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="controls">
                                                         <label>Password</label>
-                                                        <input type="password" class="form-control" placeholder="Password" value="asa" required data-validation-required-message="Password harus di isi">
+                                                        <input type="password" class="form-control" name="password" placeholder="Password" value="<?php echo $baris->password; ?>" required data-validation-required-message="Password harus di isi">
                                                     </div>
                                                 </div>
+                                                <?php }?>
                                             </div>
                                             
                                             <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
@@ -81,6 +86,8 @@
                                                 <button type="reset" class="btn btn-outline-warning">Batal</button>
                                             </div>
                                         </div>
+
+                                      
                                     </form>
                                     <!-- users edit account form ends -->
                                 </div>

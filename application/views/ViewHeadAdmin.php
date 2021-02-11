@@ -73,7 +73,7 @@
                         
                         
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                                <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600">Admin Data Center LPTSI</span><span class="user-status">Admin</span></div><span><img class="round" src="<?php echo base_url();?>assets/images/logounsoedlp3m.png" alt="avatar" height="40" width="40"></span>
+                                <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600">Admin Data Center LPTSI</span><span class="user-status">Admin</span></div><span><img class="round" src="<?php echo base_url();?>assets/images/<?php echo $this->session->userdata('photo'); ?>" alt="avatar" height="40" width="40"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="<?php echo base_url();?>Admin/ubahdata"><i class="feather icon-user"></i> Ubah Data Akun</a>
                                 <div class="dropdown-divider"></div><a class="dropdown-item" href="<?php echo base_url();?>Admin/logout"><i class="feather icon-power"></i> Logout</a>
@@ -109,13 +109,13 @@
                 </li>
                 <li class=" nav-item"><a href="#"><i class="feather icon-cpu"></i><span class="menu-title" data-i18n="Components">Komponen</span></a>
                     <ul class="menu-content">
-                        <li><a href="component-alerts.html"><i class="fa fa-cogs"></i><span class="menu-item">Prosesor</span></a>
+                        <li><a href="<?php echo base_url();?>Admin/prosesor"><i class="fa fa-cogs"></i><span class="menu-item">Prosesor</span></a>
                         </li>
-                        <li><a href="component-alerts.html"><i class="fa fa-cogs"></i><span class="menu-item">RAM</span></a>
+                        <li><a href="<?php echo base_url();?>Admin/ram"><i class="fa fa-cogs"></i><span class="menu-item">RAM</span></a>
                         </li>
-                        <li><a href="component-alerts.html"><i class="fa fa-cogs"></i><span class="menu-item">Storage</span></a>
+                        <li><a href="<?php echo base_url();?>Admin/storage"><i class="fa fa-cogs"></i><span class="menu-item">Storage</span></a>
                         </li>
-                        <li><a href="component-alerts.html"><i class="fa fa-cogs"></i><span class="menu-item">Kabel Port</span></a>
+                        <li><a href="<?php echo base_url();?>Admin/kabel"><i class="fa fa-cogs"></i><span class="menu-item">Kabel Port</span></a>
                         </li>
                         
                     </ul>
