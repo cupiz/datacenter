@@ -80,6 +80,7 @@ class Teknisi extends CI_Controller {
 
 		
 		$data['tampil'] = $this->DatacenterModel->tampilprosesordetail($id_prosesor);
+		$data['tampilserver'] = $this->DatacenterModel->tampilsemuaserver();
 
 
         $this->load->view('ViewHeadTeknisi',$judul);
@@ -92,13 +93,50 @@ class Teknisi extends CI_Controller {
 	{
         $this->load->model('DatacenterModel');
 		$status = $this->input->post('statusprosesor');
+		$server = $this->input->post('pilihserver');
 		$id_prosesor = $this->input->post('idprosesor');
 		$nama_prosesor = $this->input->post('namaprosesor');
 		$nama_server = $this->input->post('namaserver');
 		$id_user = $this->session->userdata('id_user');
+		
 
 		$data = array($status,$id_prosesor,$nama_prosesor,$nama_server,$id_user);
 		$this->DatacenterModel->ubahprosesordetail($data);
+		
+		
+		redirect('Teknisi/prosesor');
+
+	}
+
+	public function pindahprosesor($id_prosesor)
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Pindah Prosesor - ';
+
+		
+		$data['tampil'] = $this->DatacenterModel->tampilprosesordetail($id_prosesor);
+		$data['tampilserver'] = $this->DatacenterModel->tampilsemuaserver();
+
+
+        $this->load->view('ViewHeadTeknisi',$judul);
+		$this->load->view('ViewTeknisiProsesorPindah',$data);
+		$this->load->view('ViewFooterTeknisi');
+
+	}
+
+	public function prosespindahprosesor($id_prosesor)
+	{
+        $this->load->model('DatacenterModel');
+
+		$server = $this->input->post('pilihserver');
+		$id_prosesor = $this->input->post('idprosesor');
+		$nama_prosesor = $this->input->post('namaprosesor');
+		$nama_server = $this->input->post('namaserver');
+		$id_user = $this->session->userdata('id_user');
+		
+
+		$data = array($server,$id_prosesor,$nama_prosesor,$nama_server,$id_user);
+		$this->DatacenterModel->pindahprosesordetail($data);
 		
 		
 		redirect('Teknisi/prosesor');
@@ -143,6 +181,41 @@ class Teknisi extends CI_Controller {
 
 		$data = array($status,$id_ram,$nama_ram,$nama_server,$id_user);
 		$this->DatacenterModel->ubahramdetail($data);
+		
+		
+		redirect('Teknisi/ram');
+
+	}
+
+	public function pindahram($id_ram)
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Pindah RAM - ';
+
+		
+		$data['tampil'] = $this->DatacenterModel->tampilramdetail($id_ram);
+		$data['tampilserver'] = $this->DatacenterModel->tampilsemuaserver();
+
+
+        $this->load->view('ViewHeadTeknisi',$judul);
+		$this->load->view('ViewTeknisiRamPindah',$data);
+		$this->load->view('ViewFooterTeknisi');
+
+	}
+
+	public function prosespindahram($id_ram)
+	{
+        $this->load->model('DatacenterModel');
+
+		$server = $this->input->post('pilihserver');
+		$id_ram = $this->input->post('idram');
+		$nama_ram = $this->input->post('namaram');
+		$nama_server = $this->input->post('namaserver');
+		$id_user = $this->session->userdata('id_user');
+		
+
+		$data = array($server,$id_ram,$nama_ram,$nama_server,$id_user);
+		$this->DatacenterModel->pindahramdetail($data);
 		
 		
 		redirect('Teknisi/ram');
@@ -193,6 +266,43 @@ class Teknisi extends CI_Controller {
 		redirect('Teknisi/storage');
 
 	}
+
+	public function pindahstorage($id_storage)
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Pindah Storage - ';
+
+		
+		$data['tampil'] = $this->DatacenterModel->tampilstoragedetail($id_storage);
+		$data['tampilserver'] = $this->DatacenterModel->tampilsemuaserver();
+
+
+        $this->load->view('ViewHeadTeknisi',$judul);
+		$this->load->view('ViewTeknisiStoragePindah',$data);
+		$this->load->view('ViewFooterTeknisi');
+
+	}
+
+	public function prosespindahstorage($id_storage)
+	{
+        $this->load->model('DatacenterModel');
+
+		$server = $this->input->post('pilihserver');
+		$id_storage = $this->input->post('idstorage');
+		$nama_storage = $this->input->post('namastorage');
+		$nama_server = $this->input->post('namaserver');
+		$id_user = $this->session->userdata('id_user');
+		
+
+		$data = array($server,$id_storage,$nama_storage,$nama_server,$id_user);
+		$this->DatacenterModel->pindahstoragedetail($data);
+		
+		
+		redirect('Teknisi/storage');
+
+	}
+
+
 	
 	public function kabel()
 	{
@@ -232,6 +342,41 @@ class Teknisi extends CI_Controller {
 
 		$data = array($status,$id_kabel,$nama_kabel,$nama_server,$id_user);
 		$this->DatacenterModel->ubahkabeldetail($data);
+		
+		
+		redirect('Teknisi/kabel');
+
+	}
+
+	public function pindahkabel($id_kabel)
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Pindah kabel - ';
+
+		
+		$data['tampil'] = $this->DatacenterModel->tampilkabeldetail($id_kabel);
+		$data['tampilserver'] = $this->DatacenterModel->tampilsemuaserver();
+
+
+        $this->load->view('ViewHeadTeknisi',$judul);
+		$this->load->view('ViewTeknisiKabelPindah',$data);
+		$this->load->view('ViewFooterTeknisi');
+
+	}
+
+	public function prosespindahkabel($id_kabel)
+	{
+        $this->load->model('DatacenterModel');
+
+		$server = $this->input->post('pilihserver');
+		$id_kabel = $this->input->post('idkabel');
+		$nama_kabel = $this->input->post('namakabel');
+		$nama_server = $this->input->post('namaserver');
+		$id_user = $this->session->userdata('id_user');
+		
+
+		$data = array($server,$id_kabel,$nama_kabel,$nama_server,$id_user);
+		$this->DatacenterModel->pindahkabeldetail($data);
 		
 		
 		redirect('Teknisi/kabel');
@@ -361,6 +506,24 @@ class Teknisi extends CI_Controller {
 		$this->load->view('ViewFooterTeknisi');
 
 	}
+
+	public function detailsistem($id_sistem)
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Detail Sistem - ';
+
+		$data['tampil'] = $this->DatacenterModel->tampildetailsistem($id_sistem);
+	
+	
+		
+		
+		
+
+        $this->load->view('ViewHeadTeknisi',$judul);
+		$this->load->view('ViewTeknisiSistemDetail',$data);
+		$this->load->view('ViewFooterTeknisi');
+
+	}
 	
 	public function vps()
 	{
@@ -410,6 +573,44 @@ class Teknisi extends CI_Controller {
         $this->load->view('ViewHeadTeknisi',$judul);
 		$this->load->view('ViewTeknisiLaporan');
 		$this->load->view('ViewFooterTeknisi');
+
+	}
+	public function laporankomponen()
+	{
+        $this->load->model('DatacenterModel');
+		$data['title'] = 'Laporan Komponen - ';
+
+		$status = $this->input->post('status');
+		$data['pilihan'] = $this->input->post('status', TRUE);
+		$id_user = $this->session->userdata('id_user');
+		
+		$data['tampilakun'] = $this->DatacenterModel->tampilakunteknisi($id_user);
+		$data1 = array($status);
+		$data['tampil1']= $this->DatacenterModel->cetakkomponen1($data1);
+		$data['tampil2']= $this->DatacenterModel->cetakkomponen2($data1);
+		$data['tampil3']= $this->DatacenterModel->cetakkomponen3($data1);
+		$data['tampil4']= $this->DatacenterModel->cetakkomponen4($data1);
+        
+		$this->load->view('ViewLaporanKomponen',$data);
+		
+
+	}
+
+	public function laporanlog()
+	{
+        $this->load->model('DatacenterModel');
+		$data['title'] = 'Laporan Log Aktivitas - ';
+
+		$bulan = $this->input->post('bulan');
+		$tahun = $this->input->post('tahun');
+		$id_user = $this->session->userdata('id_user');
+		
+		$data['tampilakun'] = $this->DatacenterModel->tampilakunteknisi($id_user);
+		$data1 = array($bulan,$tahun,$id_user);
+		$data['tampil']= $this->DatacenterModel->cetaklog($data1);
+        
+		$this->load->view('ViewLaporanLog',$data);
+		
 
 	}
 	

@@ -86,6 +86,11 @@
                                                 <div class="chip-text"><a style="color:white" href="<?php echo base_url();?>Teknisi/detailprosesor/<?php echo $baris->id_prosesor; ?>">DETAIL</a></div>
                                             </div>
                                         </div>
+                                        <div class="chip chip-primary">
+                                            <div class="chip-body">
+                                                <div class="chip-text"><a style="color:white" href="<?php echo base_url();?>Teknisi/pindahprosesor/<?php echo $baris->id_prosesor; ?>">PINDAH</a></div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                                 <?php 

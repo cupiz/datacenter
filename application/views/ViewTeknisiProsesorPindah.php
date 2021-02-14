@@ -31,25 +31,26 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Detail <?php echo $baris->nama_prosesor; ?></h4>
+                                <h4 class="card-title">Pindah <?php echo $baris->nama_prosesor; ?></h4>
                             </div>
                             <div class="card-content">
                                 <div class="card-body card-dashboard">
-                                   
+                                
                                     <div class="card-text">
-                                        <dl class="row">
-                                            <dt class="col-sm-3">Nama</dt>
-                                            <dd class="col-sm-9"><?php echo $baris->nama_prosesor; ?></dd>
-                                        </dl>
-                                        <dl class="row">
-                                            <dt class="col-sm-3">Jumlah Core</dt>
-                                            <dd class="col-sm-9"><?php echo $baris->jml_core; ?>
-                                            </dd>
-                                        </dl>
+                                    <form method="post" action="<?php echo base_url();?>Teknisi/prosespindahprosesor">        
                                         <dl class="row">
                                             <dt class="col-sm-3">Server</dt>
                                             <dd class="col-sm-9">
-                                            <?php echo $baris->nama_server; ?>
+                                            <input type="text" hidden="true" name="idprosesor" value="<?php echo $baris->id_prosesor; ?>">
+                                            <input type="text" hidden="true" name="namaserver" value="<?php echo $baris->nama_server; ?>">
+                                            <input type="text" hidden="true" name="namaprosesor" value="<?php echo $baris->nama_prosesor; ?>">
+                                                        
+                                                            <select class="form-control" id="basicSelect" name="pilihserver">
+                                                            <option value="<?php echo $baris->id_server; ?>" ><?php echo $baris->nama_server; ?></option>
+                                                            <?php foreach ($tampilserver as $server): ?>
+                                                            <option value="<?php echo $server->id_server; ?>" ><?php echo $server->nama_server; ?></option>
+                                                            <?php endforeach; ?>
+                                                            </select>
                                                        
                                             
                                             </dd>
@@ -62,40 +63,9 @@
                                             <dt class="col-sm-3">Lemari</dt>
                                             <dd class="col-sm-9"><?php echo $baris->nama_lemari; ?></dd>
                                         </dl>
-                                        <dl class="row">
-                                            <dt class="col-sm-3">Keterangan</dt>
-                                            <dd class="col-sm-9">
-                                             <?php 
-                                                if($baris->ket_prosesor==''){
-                                                    echo 'Tidak ada keterangan';
-                                                }else{
-                                                    echo $baris->ket_prosesor;
-                                                }
-                                            ?>
-                                            </dd>
-                                        </dl>
-                                        <form method="post" action="<?php echo base_url();?>Teknisi/prosesubahprosesor">
-                                        <dl class="row">
-                                            <dt class="col-sm-3">Status</dt>
-                                            <input type="text" hidden="true" name="idprosesor" value="<?php echo $baris->id_prosesor; ?>">
-                                            <input type="text" hidden="true" name="namaserver" value="<?php echo $baris->nama_server; ?>">
-                                            <input type="text" hidden="true" name="namaprosesor" value="<?php echo $baris->nama_prosesor; ?>">
-                                            <dd class="col-sm-9">
-                                                        <?php
-                                                            $options = array("GANTI", "RUSAK", "PERBAIKI");
-                                                            $status = $baris->status_prosesor;
-                                                        ?>
-                                                            <select class="custom-select form-control" id="statusselect" name="statusprosesor">
-                                                            
-                                                                <?php foreach ($options as $option): ?>
-                                                                    <option value="<?php echo $option; ?>"<?php if ($status == $option): ?> selected="selected"<?php endif; ?>>
-                                                                        <?php echo $option; ?>
-                                                                    </option>
-                                                                <?php endforeach; ?>
-                                                            
-                                                            </select>
-                                            </dd>
-                                        </dl>
+                                        
+                                        
+                                        
                                         <br>
                                         
                                         
@@ -108,7 +78,7 @@
                                         </div>
                                         </form>
 
-                                        <?php } ?>
+                                    <?php } ?>
                                         
                                     </div>
                                 </div>

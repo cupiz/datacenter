@@ -202,6 +202,15 @@
               $now = date('Y-m-d H:i:s');
               $this->db->query("insert into tb_log values ('','$data[4]','Prosesor','$data[2] di Server $data[3] di ubah status menjadi $data[0]','$now') ");
             } 
+            public function pindahprosesordetail($data){
+              $this->db->query("update tb_prosesor set id_server='$data[0]' where id_prosesor = '$data[1]' ");
+              $namaserver = $this->db->query("select nama_server from tb_server where id_server = '$data[0]' ");
+              $row = $namaserver->row();
+              $server = $row->nama_server;
+              date_default_timezone_set('Asia/Jakarta');
+              $now = date('Y-m-d H:i:s');
+              $this->db->query("insert into tb_log values ('','$data[4]','Prosesor','$data[2] di pindah dari Server $data[3] ke Server $server','$now') ");
+            } 
 
             public function tampilteknisiram(){
               return $this->db->query("Select * from tb_ram join tb_server on tb_ram.id_server = tb_server.id_server join tb_rack on tb_server.id_rack = tb_rack.id_rack join tb_lemari on tb_rack.id_lemari = tb_lemari.id_lemari")->result();
@@ -222,6 +231,18 @@
               $this->db->query("insert into tb_log values ('','$data[4]','RAM','$data[2] di Server $data[3] di ubah status menjadi $data[0]','$now') ");
             } 
 
+            public function pindahramdetail($data){
+              $this->db->query("update tb_ram set id_server='$data[0]' where id_ram = '$data[1]' ");
+              $namaserver = $this->db->query("select nama_server from tb_server where id_server = '$data[0]' ");
+              $row = $namaserver->row();
+              $server = $row->nama_server;
+              date_default_timezone_set('Asia/Jakarta');
+              $now = date('Y-m-d H:i:s');
+              $this->db->query("insert into tb_log values ('','$data[4]','RAM','$data[2] di pindah dari Server $data[3] ke Server $server','$now') ");
+            }
+
+
+
             public function tampilteknisistorage(){
               return $this->db->query("Select * from tb_storage join tb_server on tb_storage.id_server = tb_server.id_server join tb_rack on tb_server.id_rack = tb_rack.id_rack join tb_lemari on tb_rack.id_lemari = tb_lemari.id_lemari")->result();
             }
@@ -241,6 +262,16 @@
               $this->db->query("insert into tb_log values ('','$data[4]','Storage','$data[2] di Server $data[3] di ubah status menjadi $data[0]','$now') ");
             } 
 
+            public function pindahstoragedetail($data){
+              $this->db->query("update tb_storage set id_server='$data[0]' where id_storage = '$data[1]' ");
+              $namaserver = $this->db->query("select nama_server from tb_server where id_server = '$data[0]' ");
+              $row = $namaserver->row();
+              $server = $row->nama_server;
+              date_default_timezone_set('Asia/Jakarta');
+              $now = date('Y-m-d H:i:s');
+              $this->db->query("insert into tb_log values ('','$data[4]','Storage','$data[2] di pindah dari Server $data[3] ke Server $server','$now') ");
+            }
+
             public function tampilteknisikabel(){
               return $this->db->query("Select * from tb_kabel join tb_server on tb_kabel.id_server = tb_server.id_server join tb_rack on tb_server.id_rack = tb_rack.id_rack join tb_lemari on tb_rack.id_lemari = tb_lemari.id_lemari")->result();
             }
@@ -259,6 +290,16 @@
               $now = date('Y-m-d H:i:s');
               $this->db->query("insert into tb_log values ('','$data[4]','Kabel','$data[2] di Server $data[3] di ubah status menjadi $data[0]','$now') ");
             } 
+
+            public function pindahkabeldetail($data){
+              $this->db->query("update tb_kabel set id_server='$data[0]' where id_kabel = '$data[1]' ");
+              $namaserver = $this->db->query("select nama_server from tb_server where id_server = '$data[0]' ");
+              $row = $namaserver->row();
+              $server = $row->nama_server;
+              date_default_timezone_set('Asia/Jakarta');
+              $now = date('Y-m-d H:i:s');
+              $this->db->query("insert into tb_log values ('','$data[4]','Kabel','$data[2] di pindah dari Server $data[3] ke Server $server','$now') ");
+            }
 
             public function tampilsemuaruangan(){
               return $this->db->query("Select * from tb_ruangan")->result();
@@ -401,6 +442,15 @@
                                     where tb_server.id_server='$id_server'")->result();
             }
 
+            //DETAIL SISTEM
+
+
+            public function tampildetailsistem($id_sistem){
+              return $this->db->query("Select * from tb_sistem 
+                                    join tb_vps on tb_sistem.id_vps = tb_vps.id_vps 
+                                    where tb_sistem.id_sistem='$id_sistem'")->result();
+            }
+
             //Select * from tb_server join tb_ram on tb_ram.id_server = tb_server.id_server join tb_storage on tb_storage.id_server = tb_server.id_server join tb_kabel on tb_kabel.id_server = tb_server.id_server join tb_prosesor on tb_prosesor.id_server = tb_server.id_server where tb_server.id_server='2' and tb_prosesor.status_prosesor <> 'RUSAK'
               
             
@@ -436,7 +486,7 @@
               return $this->db->query("Select * from tb_sistem")->result();
             }
 
-            public function tampildetailsistem($id_sistem){
+            public function tampildetailsistem1($id_sistem){
               return $this->db->query("Select * from tb_penghubung join tb_vps on tb_vps.id_vps = tb_penghubung.id_vps
                                       join tb_sistem on tb_sistem.id_sistem = tb_penghubung.id_sistem 
                                       where tb_penghubung.id_sistem = '$id_sistem'")->result();
@@ -448,6 +498,33 @@
 
             // Laporan
 
+            public function cetaklog($data){
+              return $this->db->query("Select * from tb_log 
+              where month(waktu)='$data[0]' and year(waktu)='$data[1]'
+              and 
+              id_user = '$data[2]' ")->result();
+            }
+
+            public function cetakkomponen1($data){
+              return $this->db->query("Select * from tb_prosesor 
+              join tb_server on tb_prosesor.id_server = tb_server.id_server 
+              where tb_prosesor.status_prosesor='$data[0]'")->result();
+            }
+            public function cetakkomponen2($data){
+              return $this->db->query("Select * from tb_ram 
+              join tb_server on tb_ram.id_server = tb_server.id_server 
+              where tb_ram.status_ram='$data[0]'")->result();
+            }
+            public function cetakkomponen3($data){
+              return $this->db->query("Select * from tb_storage
+              join tb_server on tb_storage.id_server = tb_server.id_server  
+              where tb_storage.status_storage='$data[0]'")->result();
+            }
+            public function cetakkomponen4($data){
+              return $this->db->query("Select * from tb_kabel
+              join tb_server on tb_kabel.id_server = tb_server.id_server  
+              where tb_kabel.status_kabel='$data[0]'")->result();
+            }
 
                 // END
     }
