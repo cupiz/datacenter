@@ -32,7 +32,7 @@
                             </div>
                             <div class="card-content">
                                 <div class="card-body">
-                                    <form class="form form-horizontal" method="post" action="<?php echo base_url();?>Admin/prosestambahuser">
+                                    <form class="form form-horizontal" method="post" action="<?php echo base_url();?>Admin/prosestambahuser" enctype="multipart/form-data">
                                         <div class="form-body">
                                             <div class="row">
                                                 <div class="col-12">
@@ -81,7 +81,7 @@
                                                             <span>Foto</span>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <input type="file" id="img" name="img" accept="image/*">
+                                                            <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg, image/jpg, image/gif">
                                                         </div>
                                                     </div>
                                                 </div>

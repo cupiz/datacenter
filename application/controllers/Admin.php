@@ -101,13 +101,37 @@ class Admin extends CI_Controller {
 	{
 		    
 		    $this->load->model('DatacenterModel');
-		
+			
 			$username = $this->input->post('username');
             $password = $this->input->post('password');
             $nama_user = $this->input->post('nama_user');
 			$email =$this->input->post('email');
-			$photo = "logounsoedlp3m.png";
+
+			//$photo = "logounsoedlp3m.png";
+
 			$level_user = $this->input->post('level_user');
+
+			$t=time();
+			$file_name = str_replace('.','',$t);
+			$config['upload_path']          = FCPATH.'/assets/images/';
+			$config['allowed_types']        = 'gif|jpg|jpeg|png';
+			$config['file_name']            = $file_name;
+			$config['overwrite']            = true;
+			$config['max_size']             = 1024; // 1MB
+			$config['max_width']            = 1080;
+			$config['max_height']           = 1080;
+
+			$this->load->library('upload', $config);
+
+			if (!$this->upload->do_upload('avatar')) {
+				$data['error'] = $this->upload->display_errors();
+				var_dump($data['error']);
+			} else {
+				$uploaded_data = $this->upload->data();
+
+				$photo = $uploaded_data['file_name'];
+			}
+
 			
 
 			$data = array($username,$password,$nama_user,$email,$photo,$level_user);
@@ -144,7 +168,30 @@ class Admin extends CI_Controller {
 			$id_user = $this->input->post('id_user');
 			
 
+			$t=time();
+			$file_name = str_replace('.','',$t);
+			$config['upload_path']          = FCPATH.'/assets/images/';
+			$config['allowed_types']        = 'gif|jpg|jpeg|png';
+			$config['file_name']            = $file_name;
+			$config['overwrite']            = true;
+			$config['max_size']             = 1024; // 1MB
+			$config['max_width']            = 1080;
+			$config['max_height']           = 1080;
+
+			$this->load->library('upload', $config);
+
+			if (!$this->upload->do_upload('avatar')) {
+				$data['error'] = $this->upload->display_errors();
+				$photo ='';
+			} else {
+				$uploaded_data = $this->upload->data();
+
+				$photo = $uploaded_data['file_name'];
+			}
+
+			
 			$data = array($username,$password,$nama_user,$email,$photo,$level_user,$id_user);
+
 			$this->DatacenterModel->ubahuser1($data);
 			
 			$this->session->set_flashdata('daftarberhasil','yes');		

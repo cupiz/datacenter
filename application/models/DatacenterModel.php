@@ -102,13 +102,25 @@
             }
 
             public function tambahuser($data){
-                $this->db->query("insert into tb_user 
-                                  values
-                                  ('','$data[0]',md5('$data[1]'),'$data[2]','$data[3]','$data[4]','$data[5]','0')");
+                $this->db->query("insert into tb_user values('','$data[0]','$data[1]','$data[2]','$data[3]','$data[4]','$data[5]','0')");
             }
 
             public function ubahuser1($data){
-                $this->db->query("update tb_user set username='$data[0]', password=md5('$data[1]'), nama_user='$data[2]',email='$data[3]',photo='$data[4]', level_user = '$data[5]' where id_user = '$data[6]' ");
+              if ($data[4]=='') {
+                  if ($data[1]=='') {
+                    $this->db->query("update tb_user set username='$data[0]', nama_user='$data[2]',email='$data[3]', level_user = '$data[5]' where id_user = '$data[6]' ");
+                  }else{
+                    $this->db->query("update tb_user set username='$data[0]', password=md5('$data[1]'), nama_user='$data[2]',email='$data[3]', level_user = '$data[5]' where id_user = '$data[6]' ");
+                  }
+                 
+              }else{
+                if ($data[1]=='') {
+                  $this->db->query("update tb_user set username='$data[0]', nama_user='$data[2]',email='$data[3]',photo='$data[4]', level_user = '$data[5]' where id_user = '$data[6]' ");
+                }else{
+                  $this->db->query("update tb_user set username='$data[0]', password=md5('$data[1]'), nama_user='$data[2]',email='$data[3]',photo='$data[4]', level_user = '$data[5]' where id_user = '$data[6]' ");
+                }
+                
+              }
             }
 
             public function tampilhistoryuser($id_user){
