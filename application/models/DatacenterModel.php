@@ -102,7 +102,9 @@
             }
 
             public function tambahuser($data){
-                $this->db->query("insert into tb_user values('','$data[0]',md5('$data[2]'),'$data[2]','$data[3]','$data[4]','$data[5]','0')");
+                $this->db->query("insert into tb_user 
+                                  values
+                                  ('','$data[0]',md5('$data[1]'),'$data[2]','$data[3]','$data[4]','$data[5]','0')");
             }
 
             public function ubahuser1($data){
