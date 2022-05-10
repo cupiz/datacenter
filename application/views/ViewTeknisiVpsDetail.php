@@ -66,6 +66,13 @@
                                             </dd>
                                         </dl>
                                         <dl class="row">
+                                            <dt class="col-sm-3">Operating System</dt>
+                                            <dd class="col-sm-9">
+                                            <?php echo $baris->os_vps; ?>
+                                            
+                                            </dd>
+                                        </dl>
+                                        <dl class="row">
                                             <dt class="col-sm-3">Lemari</dt>
                                             <dd class="col-sm-9">
                                             <?php echo $baris->nama_lemari; ?>

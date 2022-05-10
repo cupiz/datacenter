@@ -220,7 +220,31 @@
                                       ")->result();
             }
 
+            public function tampiladminserver(){
+              return $this->db->query("Select * from tb_server 
+                                      join tb_rack on tb_server.id_rack = tb_rack.id_rack
+                                                              
+                                      ")->result();
+            }
+            public function tampiladminvps(){
+              return $this->db->query("Select * from tb_vps 
+                                      join tb_server on tb_vps.id_server = tb_server.id_server
+                                      join tb_user on tb_vps.id_user = tb_user.id_user
+                                      ")->result();
+            }
+            //left outer join tb_prosesor on tb_vps.prosesor_vps = tb_prosesor.id_prosesor                  
+            
+            public function tampiladminsistem(){
+              return $this->db->query("Select * from tb_sistem 
+                                      join tb_vps on tb_sistem.id_vps = tb_vps.id_vps
+                                      ")->result();
+            }
 
+            public function tampiladminlog(){
+              return $this->db->query("Select * from tb_log 
+                                      join tb_user on tb_log.id_user = tb_user.id_user
+                                      ")->result();
+            }
                 
             //---AKUN TEKNISI--//    
             public function tampilakunteknisi($id_user){

@@ -592,5 +592,57 @@ class Admin extends CI_Controller {
 
     }
 
+	public function server()
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Data Server - ';
+
+		$data['tampilserver'] = $this->DatacenterModel->tampiladminserver();
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminTampilServer',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    }
+
+	public function vps()
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Data VPS - ';
+
+		$data['tampilvps'] = $this->DatacenterModel->tampiladminvps();
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminTampilVps',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    }
+
+	public function sistem()
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Data Sistem - ';
+
+		$data['tampilsistem'] = $this->DatacenterModel->tampiladminsistem();
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminTampilSistem',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    }
+
+	public function log()
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Data Log - ';
+
+		$data['tampillog'] = $this->DatacenterModel->tampiladminlog();
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminTampilLog',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    }
+
 	//END
 }

@@ -32,6 +32,7 @@
                                 <tr>
                                     <th>NO</th>
                                     <th>NAMA VPS</th>
+                                    <th>OS VPS</th>
                                     <th>UKURAN STORAGE</th>
                                     <th>PENANGGUNG JAWAB</th>
                                     <th>DETAIL</th>
@@ -45,6 +46,9 @@
                                 <tr>
                                     <td><?php echo $i; ?></td>
                                     <td class="product-name"><?php echo $baris->nama_vps ?></td>
+                                    <td>
+                                    <?php echo $baris->os_vps ?>
+                                    </td>
                                     <td>
                                     <?php echo $baris->ukuran_harddiskvps ?> 
                                     GB</td>
