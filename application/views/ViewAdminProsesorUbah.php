@@ -77,15 +77,28 @@
                                                         <div class="col-md-8">
                                                         
                                                             <select class="form-control" id="basicSelect" name="serverprosesor">
-                                                            <option value="" selected="selected">PILIH</option>
-                                                            <?php
-                                                            foreach ($option as $options) {                          
-                                                            ?>
-                                                                <option value="<?php echo $options->id_server; ?>">
-                                                                        <?php echo $options->nama_server; ?>
-                                                                 </option>
-                                                            ]<?php } ?>    
-                                                            </select>
+                                                             <?php
+                                                            $id_server = $baris->id_server;
+                                                            $sql ="SELECT * FROM tb_server where id_server='$id_server'";
+                                                            $query = $this->db->query($sql);
+                                                            if ($query->num_rows() > 0) {
+                                                            foreach ($query->result() as $row) {?>
+                                                                <option value="<?php echo $row->id_server;?>"><?php echo $row->nama_server;?></option>
+                                                            <?php }
+                                                            }
+                                                        ?>
+
+                                                        <option value="" >-----</option>
+
+                                                        <?php
+                                                        foreach ($option as $options) {                          
+                                                        ?>
+                                                            <option value="<?php echo $options->id_server; ?>">
+                                                                    <?php echo $options->nama_server; ?>
+                                                            </option>
+                                                        ]<?php } ?>    
+                                                        </select>
+
 
                                                         
                                                         </div>

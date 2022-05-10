@@ -174,6 +174,25 @@
                 $this->db->query("update tb_storage set id_server ='$data[0]', nama_storage='$data[1]',ukuran_storage='$data[2]',tipe_storage='$data[3]',ket_storage='$data[4]' where id_storage = '$data[5]' ");
             }
 
+            // kabel
+            public function tampilkabel(){
+              return $this->db->query("Select * from tb_kabel join tb_server on tb_kabel.id_server = tb_server.id_server join tb_rack on tb_server.id_rack = tb_rack.id_rack join tb_lemari on tb_rack.id_lemari = tb_lemari.id_lemari")->result();
+              }
+
+            public function hapuskabel($id_kabel){
+            $this->db->query("delete from tb_kabel where id_kabel='$id_kabel'");
+            }
+  
+            public function tambahkabel($data){
+                $this->db->query("insert into tb_kabel values('','$data[0]','$data[1]','$data[2]','$data[3]','$data[4]','GANTI')");
+            }
+            public function ubahkabel($id_kabel){
+              return $this->db->query("Select * from tb_kabel where id_kabel = '$id_kabel'")->result();
+              }
+            public function ubahkabel1($data){
+                $this->db->query("update tb_kabel set id_server ='$data[0]', nama_kabel='$data[1]',jns_kabel='$data[2]',kec_kabel='$data[3]',ket_kabel='$data[4]' where id_kabel = '$data[5]' ");
+            }
+
             public function tampiladminlemari(){
               return $this->db->query("Select * from tb_lemari 
                                       join tb_ruangan on tb_lemari.id_ruangan = tb_ruangan.id_ruangan

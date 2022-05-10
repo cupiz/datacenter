@@ -314,7 +314,7 @@ class Admin extends CI_Controller {
 			$nama = $this->input->post('nama_ram');
             $ukuranram = $this->input->post('ukuranram');
             $keterangan = $this->input->post('keterangan');
-			$server = $this->input->post('serverprosesor');
+			$server = $this->input->post('serverram');
 			$id_ram = $this->input->post('id_ram');
 			
 
@@ -413,6 +413,96 @@ class Admin extends CI_Controller {
 			
 			$this->session->set_flashdata('daftarberhasil','yes');		
 			redirect('Admin/storage');
+		
+	}
+
+	// Komponen kabel
+
+	public function kabel()
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Data Komponen Kabel - ';
+
+		$data['tampilkabel'] = $this->DatacenterModel->tampilkabel();
+		$data['tampil2'] = $this->DatacenterModel->tampilhistorykabel();
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminKomponenKabel',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    } 
+    public function hapuskabel($id_kabel)
+	{
+        $this->load->model('DatacenterModel');
+
+        $data['tampilkabel'] = $this->DatacenterModel->hapuskabel($id_kabel);
+
+        redirect("Admin/kabel");
+    } 
+
+    public function tambahkabel()
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Tambah Kabel - ';
+		$data['tampil'] = $this->DatacenterModel->tampilsemuaserver();
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminTambahKabel',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    }
+
+
+    public function prosestambahkabel()
+	{
+		    
+		    $this->load->model('DatacenterModel');
+		
+			$nama = $this->input->post('nama_kabel');
+			$jeniskabel = $this->input->post('jeniskabel');
+			$kecepatankabel = $this->input->post('kecepatankabel');
+            $keterangan = $this->input->post('keterangan');
+			$server = $this->input->post('serverkabel');
+
+			$data = array($server,$nama,$jeniskabel,$kecepatankabel,$keterangan);
+			$this->DatacenterModel->tambahkabel($data);
+			
+			$this->session->set_flashdata('daftarberhasil','yes');		
+			redirect('Admin/kabel');
+		
+    }
+    
+    public function ubahkabel($id_kabel)
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Ubah Kabel - ';
+		$data['option'] = $this->DatacenterModel->tampilsemuaserver();
+        $data['ubahkabel'] = $this->DatacenterModel->ubahkabel($id_kabel);
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminKabelUbah',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    }
+    
+    public function prosesubahkabel()
+	{
+		    
+		    $this->load->model('DatacenterModel');
+		
+			$nama = $this->input->post('nama_kabel');
+			$jeniskabel = $this->input->post('jeniskabel');
+			$kecepatankabel = $this->input->post('kecepatankabel');
+            $keterangan = $this->input->post('keterangan');
+			$server = $this->input->post('serverkabel');
+			$id_kabel = $this->input->post('id_kabel');
+			
+
+			$data = array($server,$nama,$jeniskabel,$kecepatankabel,$keterangan,$id_kabel);
+			$this->DatacenterModel->ubahkabel1($data);
+			
+			$this->session->set_flashdata('daftarberhasil','yes');		
+			redirect('Admin/kabel');
 		
 	}
 

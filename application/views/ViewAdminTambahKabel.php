@@ -7,10 +7,10 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-left mb-0">Storage</h2>
-                        <div class="breadcrumb-wrapper col-12">Storage
+                        <h2 class="content-header-title float-left mb-0">Kabel</h2>
+                        <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item active"> Ubah Storage
+                                <li class="breadcrumb-item active"> Tambah Kabel
                                 </li>
                                 
                             </ol>
@@ -28,43 +28,41 @@
                     <div class="col-md-12 col-12">
                         <div class="card" >
                             <div class="card-header">
-                                <h4 class="card-title">Form Ubah Storage</h4>
+                                <h4 class="card-title">Form Tambah Kabel</h4>
                             </div>
                             <div class="card-content">
                                 <div class="card-body">
 
-                                    <form class="form form-horizontal" method="post" action="<?php echo base_url();?>Admin/prosesubahstorage">
+                                    <form class="form form-horizontal" method="post" action="<?php echo base_url();?>Admin/prosestambahkabel">
                                         <div class="form-body">
                                             <div class="row">
-                                            <?php foreach ($ubahstorage as $baris) { ?>
                                                 <div class="col-12">
                                                     <div class="form-group row">
                                                         <div class="col-md-4">
-                                                            <span>Nama</span>
+                                                            <span>Nama Kabel</span>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <input type="text" id="first-name" class="form-control" name="nama_storage" placeholder="Masukkan Nama" required value="<?php echo $baris->nama_storage; ?>">
-                                                            <input type="text" hidden="true" id="first-name" class="form-control" name="id_storage" placeholder="Masukkan Nama" required value="<?php echo $baris->id_storage; ?>"> 
+                                                            <input type="text" id="first-name" class="form-control" name="nama_kabel" placeholder="Masukkan Nama" required>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-group row">
                                                         <div class="col-md-4">
-                                                            <span>Ukuran Storage</span>
+                                                            <span>Jenis Kabel</span>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <input type="text" id="first-name" class="form-control" name="ukuranstorage" placeholder="Masukkan jumlah Storage" required value="<?php echo $baris->ukuran_storage; ?>">
+                                                            <input type="text" id="first-name" class="form-control" name="jeniskabel" placeholder="Masukkan ukuran kabel (angka saja)" required>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-group row">
                                                         <div class="col-md-4">
-                                                            <span>Tipe Storage</span>
+                                                            <span>Kecepatan Kabel</span>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <input type="text" id="first-name" class="form-control" name="tipestorage" placeholder="Masukkan tipe Storage" required value="<?php echo $baris->tipe_storage; ?>">
+                                                            <input type="text" id="first-name" class="form-control" name="kecepatankabel" placeholder="Masukkan tipe kabel" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -74,7 +72,7 @@
                                                             <span>Keterangan</span>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <textarea id="" class="form-control" name="keterangan" rows="7" placeholder="Masukkan keterangan" required><?php echo $baris->ket_storage; ?></textarea>
+                                                            <textarea id="" class="form-control" name="keterangan" rows="7" placeholder="Masukkan keterangan" required></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -86,29 +84,16 @@
                                                         </div>
                                                         <div class="col-md-8">
                                                         
-                                                        <select class="form-control" id="basicSelect" name="serverstorage">
-                                                        <?php
-                                                            $id_server = $baris->id_server;
-                                                            $sql ="SELECT * FROM tb_server where id_server='$id_server'";
-                                                            $query = $this->db->query($sql);
-                                                            if ($query->num_rows() > 0) {
-                                                            foreach ($query->result() as $row) {?>
-                                                                <option value="<?php echo $row->id_server;?>"><?php echo $row->nama_server;?></option>
-                                                            <?php }
-                                                            }
-                                                        ?>
-
-                                                        <option value="" >-----</option>
-
-                                                        <?php
-                                                        foreach ($option as $options) {                          
-                                                        ?>
-                                                            <option value="<?php echo $options->id_server; ?>">
-                                                                    <?php echo $options->nama_server; ?>
-                                                            </option>
-                                                        ]<?php } ?>    
-                                                        </select>
-
+                                                            <select class="form-control" id="basicSelect" name="serverkabel">
+                                                            <option value="" selected="selected">PILIH</option>
+                                                            <?php
+                                                            foreach ($tampil as $baris) {                          
+                                                            ?>
+                                                                <option value="<?php echo $baris->id_server; ?>">
+                                                                        <?php echo $baris->nama_server; ?>
+                                                                    </option>
+                                                            ]<?php } ?>    
+                                                            </select>
 
                                                         
                                                         </div>
@@ -123,7 +108,6 @@
                                                 <button type="button" class="btn btn-primary mr-1 mb-1 waves-effect waves-light"><a href="javascript:window.history.go(-1);" style="color:white;">CANCEL</a></button>
                                             
                                                 </div>
-                                             <?php } ?>
                                             </div>
                                         </div>
                                     </form>
