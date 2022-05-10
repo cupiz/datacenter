@@ -38,6 +38,7 @@
                                             <table class="table zero-configuration">
                                                 <thead>
                                                     <tr>
+                                                        <th>NO</th>
                                                         <th>NAMA RAM</th>
                                                         <th>UKURAN RAM</th>
                                                         <th>SERVER</th>
@@ -47,9 +48,13 @@
                                                 </thead>
                                                 <tbody>
                                                 <?php
+                                                    $a=1;
 	                            					foreach ($tampilram as $baris) {  ?>
                                                     <tr>
                                     
+                                    <td>
+                                    <?php echo $a; ?>
+                                    </td>
                                     <td class="product-name"><?php echo $baris->nama_ram; ?></td>
                                     <td>
                                     <?php echo $baris->ukuran_ram; ?> GB
@@ -83,7 +88,7 @@
                                                             <a class="badge badge-pill badge-danger badge-glow" href="<?php echo base_url();?>Admin/hapusram/<?php echo $baris->id_ram; ?>">Hapus</a>
                                     </td>
                                 </tr>
-                                                    <?php } ?>
+                                                    <?php $a++; } ?>
                                             </table>
                                         </div>
                                     </div>

@@ -38,6 +38,7 @@
                                             <table class="table zero-configuration">
                                                 <thead>
                                                     <tr>
+                                                        <th>NO</th>
                                                         <th>NAMA</th>
                                                         <th>UKURAN STORAGE</th>
                                                         <th>SERVER</th>
@@ -48,9 +49,13 @@
                                                 </thead>
                                                 <tbody>
                                                 <?php
+                                                    $a=1;
 	                            					foreach ($tampilstorage as $baris) {  ?>
                                                     <tr>
                                     
+                                    <td>
+                                    <?php echo $a; ?>
+                                    </td>
                                     <td class="product-name"><?php echo $baris->nama_storage; ?></td>
                                     <td>
                                     <?php echo $baris->ukuran_storage; ?>
@@ -86,7 +91,9 @@
                                                             <a class="badge badge-pill badge-danger badge-glow" href="<?php echo base_url();?>Admin/hapusstorage/<?php echo $baris->id_storage; ?>">Hapus</a>
                                     </td>
                                 </tr>
-                                                    <?php } ?>
+                                                    <?php
+                                                    $a++;
+                                                    } ?>
                                             </table>
                                         </div>
                                     </div>

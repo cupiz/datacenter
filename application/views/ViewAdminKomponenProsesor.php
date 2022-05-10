@@ -38,6 +38,7 @@
                                             <table class="table zero-configuration">
                                                 <thead>
                                                     <tr>
+                                                        <th>NO</th>
                                                         <th>NAMA</th>
                                                         <th>JUMLAH CORE</th>
                                                         <th>SERVER</th>
@@ -49,9 +50,13 @@
                                                 </thead>
                                                 <tbody>
                                                 <?php
+                                                    $a=1;
 	                            					foreach ($tampilkomponenprosesor as $baris) {  ?>
                                                     <tr>
-                                    
+                                                    
+                                    <td>
+                                    <?php echo $a; ?>
+                                    </td>
                                     <td class="product-name"><?php echo $baris->nama_prosesor; ?></td>
                                     <td>
                                     <?php echo $baris->jml_core; ?>
@@ -89,7 +94,7 @@
                                                             <a class="badge badge-pill badge-danger badge-glow" href="<?php echo base_url();?>Admin/hapusprosesor/<?php echo $baris->id_prosesor; ?>">Hapus</a>
                                     </td>
                                 </tr>
-                                                    <?php } ?>
+                                                    <?php $a++; } ?>
                                             </table>
                                         </div>
                                     </div>

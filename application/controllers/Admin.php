@@ -416,4 +416,44 @@ class Admin extends CI_Controller {
 		
 	}
 
+	public function ruangan()
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Data Ruangan - ';
+
+		$data['tampilruangan'] = $this->DatacenterModel->tampilsemuaruangan();
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminTampilRuangan',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    }
+
+	public function lemari()
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Data Lemari - ';
+
+		$data['tampillemari'] = $this->DatacenterModel->tampiladminlemari();
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminTampilLemari',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    }
+	
+	public function rak()
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Data Rak - ';
+
+		$data['tampilrak'] = $this->DatacenterModel->tampiladminrak();
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminTampilRak',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    }
+
+	//END
 }

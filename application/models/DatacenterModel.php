@@ -153,6 +153,8 @@
                 $this->db->query("update tb_ram set id_server ='$data[0]', nama_ram='$data[1]',ukuran_ram='$data[2]',ket_ram='$data[3]' where id_ram = '$data[4]' ");
             }
 
+            
+
             // storage
             public function tampilstorage(){
               return $this->db->query("Select * from tb_storage join tb_server on tb_storage.id_server = tb_server.id_server join tb_rack on tb_server.id_rack = tb_rack.id_rack join tb_lemari on tb_rack.id_lemari = tb_lemari.id_lemari")->result();
@@ -172,6 +174,18 @@
                 $this->db->query("update tb_storage set id_server ='$data[0]', nama_storage='$data[1]',ukuran_storage='$data[2]',tipe_storage='$data[3]',ket_storage='$data[4]' where id_storage = '$data[5]' ");
             }
 
+            public function tampiladminlemari(){
+              return $this->db->query("Select * from tb_lemari 
+                                      join tb_ruangan on tb_lemari.id_ruangan = tb_ruangan.id_ruangan
+                                      ")->result();
+            }
+
+            public function tampiladminrak(){
+              return $this->db->query("Select * from tb_rack 
+                                      join tb_lemari on tb_rack.id_lemari = tb_lemari.id_lemari
+                                      join tb_ruangan on tb_lemari.id_ruangan = tb_ruangan.id_ruangan                        
+                                      ")->result();
+            }
 
 
                 

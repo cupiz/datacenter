@@ -22,7 +22,7 @@
                                     <!-- users edit media object start -->
                                     <div class="media mb-2">
                                         <a class="mr-2 my-25" href="#">
-                                            <img src="<?php echo base_url();?>assets/app-assets/images/portrait/small/avatar-s-18.jpg" alt="users avatar" class="users-avatar-shadow rounded" height="90" width="90">
+                                            <img src="<?php echo base_url();?>assets/images/<?php echo $this->session->userdata('photo'); ?>" alt="users avatar" class="users-avatar-shadow rounded" height="90" width="90">
                                         </a>
                                         <div class="media-body mt-50">
                                             <h4 class="media-heading"><?php echo $this->session->userdata('nama_user'); ?></h4>
@@ -40,7 +40,7 @@
                                                     cursor: inherit;
                                                     display: block;"><i style="color: white;">Ubah</i></a>
                                                 <a href="#" class="btn btn-primary d-block d-sm-none mr-75"><i class="feather icon-edit-1"></i></a>
-                                                <a href="#" class="btn btn-outline-danger d-none d-sm-block">Hapus</a>
+                                           
                                                 <a href="#" class="btn btn-outline-danger d-block d-sm-none"><i class="feather icon-trash-2"></i></a>
                                             </div>
                                         </div>
@@ -58,6 +58,7 @@
                                                         <label>Username</label>
                                                         <input type="text" class="form-control" name="username" placeholder="Username" value="<?php echo $baris->username; ?>" required data-validation-required-message="Username harus di isi">
                                                         <input type="hidden" class="form-control" name="id_user" placeholder="ERROR" value="<?php echo $baris->id_user; ?>">
+                                                        <input type="hidden" class="form-control" name="level_user" placeholder="ERROR" value="<?php echo $baris->level_user; ?>">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

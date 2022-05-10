@@ -120,19 +120,19 @@
                         
                     </ul>
                 </li>
-                <li class=" nav-item"><a href="app-email.html"><i class="fas fa-door-closed"></i><span class="menu-title" data-i18n="Email">Ruangan</span></a>
+                <li class=" nav-item"><a href="<?php echo base_url();?>Admin/ruangan"><i class="fas fa-door-closed"></i><span class="menu-title" data-i18n="Email">Ruangan</span></a>
                 </li>
-                <li class=" nav-item"><a href="app-email.html"><i class="fa fa-building"></i><span class="menu-title" data-i18n="Email">Lemari</span></a>
+                <li class=" nav-item"><a href="<?php echo base_url();?>Admin/lemari"><i class="fa fa-building"></i><span class="menu-title" data-i18n="Email">Lemari</span></a>
                 </li>
-                <li class=" nav-item"><a href="app-email.html"><i class="feather icon-inbox"></i><span class="menu-title" data-i18n="Email">Rak</span></a>
+                <li class=" nav-item"><a href="<?php echo base_url();?>Admin/rak"><i class="feather icon-inbox"></i><span class="menu-title" data-i18n="Email">Rak</span></a>
                 </li>
-                <li class=" nav-item"><a href="app-email.html"><i class="fa fa-desktop"></i><span class="menu-title" data-i18n="Email">Server</span></a>
+                <li class=" nav-item"><a href="<?php echo base_url();?>Admin/server"><i class="fa fa-desktop"></i><span class="menu-title" data-i18n="Email">Server</span></a>
                 </li>
-                <li class=" nav-item"><a href="app-email.html"><i class="fa fa-server"></i><span class="menu-title" data-i18n="Email">VPS</span></a>
+                <li class=" nav-item"><a href="<?php echo base_url();?>Admin/vps"><i class="fa fa-server"></i><span class="menu-title" data-i18n="Email">VPS</span></a>
                 </li>
-                <li class=" nav-item"><a href="app-email.html"><i class="fa fa-dot-circle-o"></i><span class="menu-title" data-i18n="Email">Sistem</span></a>
+                <li class=" nav-item"><a href="<?php echo base_url();?>Admin/sistem"><i class="fa fa-dot-circle-o"></i><span class="menu-title" data-i18n="Email">Sistem</span></a>
                 </li>
-                <li class=" nav-item"><a href="app-email.html"><i class="feather icon-alert-octagon"></i><span class="menu-title" data-i18n="Email">Log</span></a>
+                <li class=" nav-item"><a href="<?php echo base_url();?>Admin/log"><i class="feather icon-alert-octagon"></i><span class="menu-title" data-i18n="Email">Log</span></a>
                 </li>
                 
 
