@@ -32,7 +32,7 @@
                             </div>
                             <div class="card-content">
                                 <div class="card-body">
-                                    <form class="form form-horizontal" method="post" action="<?php echo base_url();?>Admin/prosesubahuser">
+                                    <form class="form form-horizontal" method="post" action="<?php echo base_url();?>Admin/prosesubahuser" enctype="multipart/form-data">
                                         <div class="form-body">
                                             <div class="row">
                                                 <?php foreach ($ubahuser as $baris) { ?>
@@ -74,7 +74,8 @@
                                                             <span>Password</span>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <input type="password" id="first-name" class="form-control" name="password" placeholder="Masukkan Password" required value="<?php echo $baris->password; ?>">
+                                                        <input type="password" id="first-name" class="form-control" name="password" placeholder="Masukkan Password">
+                                                            <span>*Kosongkan jika tidak diubah</span>
                                                         </div>
                                                     </div>
                                                 </div>

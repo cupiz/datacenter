@@ -103,7 +103,7 @@ class Admin extends CI_Controller {
 		    $this->load->model('DatacenterModel');
 			
 			$username = $this->input->post('username');
-            $password = $this->input->post('password');
+            $password = md5($this->input->post('password'));
             $nama_user = $this->input->post('nama_user');
 			$email =$this->input->post('email');
 
