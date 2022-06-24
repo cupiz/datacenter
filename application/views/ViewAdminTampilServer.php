@@ -56,8 +56,8 @@
                                     <td class="product-name"><?php echo $baris->nama_server; ?></td>
                                     <td><?php echo $baris->nama_rack; ?></td>
                                     <td>
-                                                            <a class="badge badge-pill badge-info badge-glow" href="<?php echo base_url();?>Admin/ubahruangan/<?php echo $baris->id_server; ?>">Ubah</a>
-                                                            <a class="badge badge-pill badge-danger badge-glow" href="<?php echo base_url();?>Admin/hapusruangan/<?php echo $baris->id_server; ?>">Hapus</a>
+                                                            <a class="badge badge-pill badge-info badge-glow" href="<?php echo base_url();?>Admin/ubahserver/<?php echo $baris->id_server; ?>">Ubah</a>
+                                                            <a class="badge badge-pill badge-danger badge-glow" href="<?php echo base_url();?>Admin/hapusserver/<?php echo $baris->id_server; ?>">Hapus</a>
                                     </td>
                                 </tr>
                                                     <?php $a++; } ?>

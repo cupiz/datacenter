@@ -40,6 +40,8 @@ class Login extends CI_Controller {
 				redirect('Admin');
 			}else if($leveluser == '2'){
 				redirect('Teknisi');
+			}else if($leveluser == '3'){
+				redirect('Guest');
 			}
 			
 	 
@@ -84,7 +86,9 @@ class Login extends CI_Controller {
                 redirect('Admin');
                 }else if($level_user == '2'){
                 redirect('Teknisi');
-                }else{
+                }else if($level_user == '3'){
+				redirect('Guest');
+				}else{
 				redirect('Login/index');	
 				}
 			}

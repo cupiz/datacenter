@@ -566,6 +566,42 @@ class Admin extends CI_Controller {
 
     }
 
+	public function hapusruangan($id_ruangan)
+	{
+        $this->load->model('DatacenterModel');
+
+        $data['tampilruangan'] = $this->DatacenterModel->hapusruangan($id_ruangan);
+
+        redirect("Admin/ruangan");
+    } 
+
+	public function tambahruangan()
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Tambah Ruangan - ';
+		
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminTambahRuangan');
+		$this->load->view('ViewFooterAdmin');
+
+    }
+
+
+    public function prosestambahruangan()
+	{
+		    
+		    $this->load->model('DatacenterModel');
+		
+			$nama = $this->input->post('nama_ruangan');
+
+			$data = array($nama);
+			$this->DatacenterModel->tambahruangan($data);
+			
+			$this->session->set_flashdata('daftarberhasil','yes');		
+			redirect('Admin/ruangan');
+		
+    }
+
 	public function lemari()
 	{
         $this->load->model('DatacenterModel');
@@ -578,7 +614,46 @@ class Admin extends CI_Controller {
 		$this->load->view('ViewFooterAdmin');
 
     }
+
+	public function hapuslemari($id_lemari)
+	{
+        $this->load->model('DatacenterModel');
+
+        $data['tampillemari'] = $this->DatacenterModel->hapuslemari($id_lemari);
+
+        redirect("Admin/lemari");
+    } 
 	
+	public function tambahlemari()
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Tambah Lemari - ';
+		$data['tampil'] = $this->DatacenterModel->tampilsemuaruangan();
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminTambahLemari',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    }
+
+
+    public function prosestambahlemari()
+	{
+		    
+		    $this->load->model('DatacenterModel');
+		
+			$nama = $this->input->post('nama_lemari');
+			$slotrack = $this->input->post('slotrack');
+			$ruangan = $this->input->post('ruanganlemari');
+
+			$data = array($ruangan,$nama,$slotrack);
+			$this->DatacenterModel->tambahlemari($data);
+			
+			$this->session->set_flashdata('daftarberhasil','yes');		
+			redirect('Admin/lemari');
+		
+    }
+
 	public function rak()
 	{
         $this->load->model('DatacenterModel');
@@ -592,6 +667,46 @@ class Admin extends CI_Controller {
 
     }
 
+	public function hapusrak($id_rak)
+	{
+        $this->load->model('DatacenterModel');
+
+        $data['tampilrak'] = $this->DatacenterModel->hapusrak($id_rak);
+
+        redirect("Admin/rak");
+    } 
+
+	public function tambahrak()
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Tambah Rack - ';
+		$data['tampil'] = $this->DatacenterModel->tampilsemualemari();
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminTambahRak',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    }
+
+
+    public function prosestambahrak()
+	{
+		    
+		    $this->load->model('DatacenterModel');
+		
+			$nama = $this->input->post('nama_rack');
+			
+			$lemari = $this->input->post('lemarirack');
+
+			$data = array($lemari,$nama);
+			$this->DatacenterModel->tambahrak($data);
+			
+			$this->session->set_flashdata('daftarberhasil','yes');		
+			redirect('Admin/rak');
+		
+    }
+
+
 	public function server()
 	{
         $this->load->model('DatacenterModel');
@@ -603,6 +718,45 @@ class Admin extends CI_Controller {
 		$this->load->view('ViewAdminTampilServer',$data);
 		$this->load->view('ViewFooterAdmin');
 
+    }
+
+	public function hapusserver($id_server)
+	{
+        $this->load->model('DatacenterModel');
+
+        $data['tampilserver'] = $this->DatacenterModel->hapusserver($id_server);
+
+        redirect("Admin/server");
+    } 
+
+	public function tambahserver()
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Tambah Server - ';
+		$data['tampil'] = $this->DatacenterModel->tampilsemuarack();
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminTambahServer',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    }
+
+
+    public function prosestambahserver()
+	{
+		    
+		    $this->load->model('DatacenterModel');
+		
+			$nama = $this->input->post('nama_server');
+			
+			$server = $this->input->post('rackserver');
+
+			$data = array($server,$nama);
+			$this->DatacenterModel->tambahserver($data);
+			
+			$this->session->set_flashdata('daftarberhasil','yes');		
+			redirect('Admin/server');
+		
     }
 
 	public function vps()
@@ -618,6 +772,56 @@ class Admin extends CI_Controller {
 
     }
 
+	
+	public function hapusvps($id_vps)
+	{
+        $this->load->model('DatacenterModel');
+
+        $data['tampilvps'] = $this->DatacenterModel->hapusvps($id_vps);
+
+        redirect("Admin/vps");
+    } 
+
+	public function tambahvps()
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Tambah VPS - ';
+		$data['tampilprosesor'] = $this->DatacenterModel->tampilprosesor();
+		$data['tampilram'] = $this->DatacenterModel->tampilram();
+		$data['tampilserver'] = $this->DatacenterModel->tampilsemuaserver();
+		$data['tampiluser'] = $this->DatacenterModel->tampiluser();
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminTambahVps',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    }
+
+
+    public function prosestambahvps()
+	{
+		    
+		    $this->load->model('DatacenterModel');
+		
+			$server = $this->input->post('vpsserver');
+			$nama = $this->input->post('nama_vps');
+			$prosesor = $this->input->post('vpsprosesor');
+			$hdd = $this->input->post('ukuranhardisk');
+			$ram = $this->input->post('vpsram');
+			$os = $this->input->post('os');
+			$user = $this->input->post('vpsuser');
+
+			
+			$data = array($server,$nama,$prosesor,$hdd,$ram,$os,$user);
+			$this->DatacenterModel->tambahvps($data);
+			
+			$this->session->set_flashdata('daftarberhasil','yes');		
+			redirect('Admin/vps');
+		
+    }
+
+
+
 	public function sistem()
 	{
         $this->load->model('DatacenterModel');
@@ -631,6 +835,49 @@ class Admin extends CI_Controller {
 
     }
 
+	public function hapussistem($id_sistem)
+	{
+        $this->load->model('DatacenterModel');
+
+        $data['tampilsistem'] = $this->DatacenterModel->hapussistem($id_sistem);
+
+        redirect("Admin/sistem");
+    } 
+
+	public function tambahsistem()
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Tambah Sistem - ';
+		$data['tampil'] = $this->DatacenterModel->tampilsemuavps2();
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminTambahSistem',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    }
+
+
+    public function prosestambahsistem()
+	{
+		    
+		    $this->load->model('DatacenterModel');
+		
+			$nama = $this->input->post('nama_sistem');
+			$alamat_sistem = $this->input->post('alamat_sistem');
+			$deskripsi = $this->input->post('deskripsi');
+			$tahun = $this->input->post('tahun');
+			$vps = $this->input->post('sistemvps');
+
+			$data = array($vps,$nama,$alamat_sistem,$deskripsi,$tahun);
+			$this->DatacenterModel->tambahsistem($data);
+			
+			$this->session->set_flashdata('daftarberhasil','yes');		
+			redirect('Admin/sistem');
+		
+    }
+
+
+
 	public function log()
 	{
         $this->load->model('DatacenterModel');
@@ -643,6 +890,16 @@ class Admin extends CI_Controller {
 		$this->load->view('ViewFooterAdmin');
 
     }
+
+	public function hapuslog($id_log)
+	{
+        $this->load->model('DatacenterModel');
+
+        $data['tampillog'] = $this->DatacenterModel->hapuslog($id_log);
+
+        redirect("Admin/log");
+    } 
+	
 
 	//END
 }

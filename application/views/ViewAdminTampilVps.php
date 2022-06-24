@@ -66,8 +66,8 @@
                                     <td><?php echo $baris->nama_server; ?></td>
                                     <td><?php echo $baris->nama_user; ?></td>    
                                     <td>
-                                                            <a class="badge badge-pill badge-info badge-glow" href="<?php echo base_url();?>Admin/ubahruangan/<?php echo $baris->id_vps; ?>">Ubah</a>
-                                                            <a class="badge badge-pill badge-danger badge-glow" href="<?php echo base_url();?>Admin/hapusruangan/<?php echo $baris->id_vps; ?>">Hapus</a>
+                                                            <a class="badge badge-pill badge-info badge-glow" href="<?php echo base_url();?>Admin/ubahvps/<?php echo $baris->id_vps; ?>">Ubah</a>
+                                                            <a class="badge badge-pill badge-danger badge-glow" href="<?php echo base_url();?>Admin/hapusvps/<?php echo $baris->id_vps; ?>">Hapus</a>
                                     </td>
                                 </tr>
                                                     <?php $a++; } ?>

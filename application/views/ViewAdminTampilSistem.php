@@ -62,8 +62,8 @@
                                     <td><?php echo $baris->tahun; ?></td>
                                     <td><?php echo $baris->nama_vps; ?></td>
                                     <td>
-                                                            <a class="badge badge-pill badge-info badge-glow" href="<?php echo base_url();?>Admin/ubahruangan/<?php echo $baris->id_sistem; ?>">Ubah</a>
-                                                            <a class="badge badge-pill badge-danger badge-glow" href="<?php echo base_url();?>Admin/hapusruangan/<?php echo $baris->id_sistem; ?>">Hapus</a>
+                                                            <a class="badge badge-pill badge-info badge-glow" href="<?php echo base_url();?>Admin/ubahsistem/<?php echo $baris->id_sistem; ?>">Ubah</a>
+                                                            <a class="badge badge-pill badge-danger badge-glow" href="<?php echo base_url();?>Admin/hapussistem/<?php echo $baris->id_sistem; ?>">Hapus</a>
                                     </td>
                                 </tr>
                                                     <?php $a++; } ?>

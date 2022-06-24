@@ -131,6 +131,7 @@
                 return $this->db->query("Select * from tb_komponen")->result();
                 }
 
+
             public function tampilprosesor(){
               return $this->db->query("Select * from tb_prosesor join tb_server on tb_prosesor.id_server = tb_server.id_server join tb_rack on tb_server.id_rack = tb_rack.id_rack join tb_lemari on tb_rack.id_lemari = tb_lemari.id_lemari")->result();
               }
@@ -212,6 +213,10 @@
                                       join tb_ruangan on tb_lemari.id_ruangan = tb_ruangan.id_ruangan
                                       ")->result();
             }
+            
+            public function tambahlemari($data){
+              $this->db->query("insert into tb_lemari values('','$data[0]','$data[1]','$data[2]')");
+            }
 
             public function tampiladminrak(){
               return $this->db->query("Select * from tb_rack 
@@ -219,6 +224,16 @@
                                       join tb_ruangan on tb_lemari.id_ruangan = tb_ruangan.id_ruangan                        
                                       ")->result();
             }
+            
+            public function tambahrak($data){
+              $this->db->query("insert into tb_rack values('','$data[0]','$data[1]')");
+            }
+
+            //ruangan
+            public function tambahruangan($data){
+              $this->db->query("insert into tb_ruangan values('','$data[0]')");
+            }
+
 
             public function tampiladminserver(){
               return $this->db->query("Select * from tb_server 
@@ -226,25 +241,43 @@
                                                               
                                       ")->result();
             }
+
+            public function tambahserver($data){
+              $this->db->query("insert into tb_server values('','$data[0]','$data[1]')");
+            }
+
             public function tampiladminvps(){
               return $this->db->query("Select * from tb_vps 
                                       join tb_server on tb_vps.id_server = tb_server.id_server
                                       join tb_user on tb_vps.id_user = tb_user.id_user
                                       ")->result();
             }
+
             //left outer join tb_prosesor on tb_vps.prosesor_vps = tb_prosesor.id_prosesor                  
             
+            public function tambahvps($data){
+              $this->db->query("insert into tb_vps values('','$data[0]','$data[1]','$data[2]','$data[3]','$data[4]','$data[5]','$data[6]')");
+          }
+
             public function tampiladminsistem(){
               return $this->db->query("Select * from tb_sistem 
                                       join tb_vps on tb_sistem.id_vps = tb_vps.id_vps
                                       ")->result();
             }
 
+            public function tambahsistem($data){
+              $this->db->query("insert into tb_sistem values('','$data[0]','$data[1]','$data[2]','$data[3]','$data[4]')");
+          }
+
             public function tampiladminlog(){
               return $this->db->query("Select * from tb_log 
                                       join tb_user on tb_log.id_user = tb_user.id_user
                                       ")->result();
             }
+
+            public function hapuslog($id_log){
+              $this->db->query("delete from tb_log where id_log='$id_log'");
+              }
                 
             //---AKUN TEKNISI--//    
             public function tampilakunteknisi($id_user){
@@ -376,6 +409,10 @@
               return $this->db->query("Select * from tb_ruangan")->result();
             }
 
+            public function hapusruangan($id_ruangan){
+              $this->db->query("delete from tb_ruangan where id_ruangan='$id_ruangan'");
+              }
+
             public function tampildetailruangan($id_ruangan){
               return $this->db->query("Select * from tb_ruangan where tb_ruangan.id_ruangan='$id_ruangan'")->result();
             }
@@ -406,6 +443,10 @@
               return $this->db->query("Select * from tb_lemari")->result();
             }
 
+            public function hapuslemari($id_lemari){
+              $this->db->query("delete from tb_lemari where id_lemari='$id_lemari'");
+              }
+
             public function tampildetaillemari($id_lemari){
               return $this->db->query("Select * from tb_lemari where tb_lemari.id_lemari='$id_lemari'")->result();
             }
@@ -434,6 +475,10 @@
               return $this->db->query("Select * from tb_rack")->result();
             }
 
+            public function hapusrak($id_rak){
+              $this->db->query("delete from tb_rack where id_rack='$id_rak'");
+              }
+
             public function tampildetailrack($id_rack){
               return $this->db->query("Select * from tb_rack left join tb_server on tb_rack.id_rack = tb_server.id_rack where tb_rack.id_rack='$id_rack'")->result();
             }
@@ -456,6 +501,10 @@
             public function tampilsemuaserver(){
               return $this->db->query("Select * from tb_server")->result();
             }
+
+            public function hapusserver($id_server){
+              $this->db->query("delete from tb_server where id_server='$id_server'");
+              }
 
             public function tampildetailserver($id_server){
               return $this->db->query("Select * from tb_server 
@@ -525,12 +574,19 @@
             //Select * from tb_server join tb_ram on tb_ram.id_server = tb_server.id_server join tb_storage on tb_storage.id_server = tb_server.id_server join tb_kabel on tb_kabel.id_server = tb_server.id_server join tb_prosesor on tb_prosesor.id_server = tb_server.id_server where tb_server.id_server='2' and tb_prosesor.status_prosesor <> 'RUSAK'
               
             
-
             // VPS
 
             public function tampilsemuavps(){
               return $this->db->query("Select * from tb_vps join tb_user on tb_user.id_user = tb_vps.id_user")->result();
             }
+
+            public function tampilsemuavps2(){
+              return $this->db->query("Select * from tb_vps")->result();
+            }
+
+            public function hapusvps($id_vps){
+              $this->db->query("delete from tb_vps where id_vps='$id_vps'");
+              }
 
             public function tampilsemuavpsdetail($id_vps){
               return $this->db->query("Select * from tb_vps join tb_user on tb_user.id_user = tb_vps.id_user where tb_vps.id_vps='$id_vps'")->result();
@@ -557,6 +613,10 @@
               return $this->db->query("Select * from tb_sistem")->result();
             }
 
+            public function hapussistem($id_sistem){
+              $this->db->query("delete from tb_sistem where id_sistem='$id_sistem'");
+              }
+
             public function tampildetailsistem1($id_sistem){
               return $this->db->query("Select * from tb_penghubung join tb_vps on tb_vps.id_vps = tb_penghubung.id_vps
                                       join tb_sistem on tb_sistem.id_sistem = tb_penghubung.id_sistem 
@@ -575,6 +635,8 @@
               and 
               id_user = '$data[2]' ")->result();
             }
+
+            
 
             public function cetakkomponen1($data){
               return $this->db->query("Select * from tb_prosesor 
