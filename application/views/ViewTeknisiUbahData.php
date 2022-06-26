@@ -27,7 +27,10 @@
                                         <div class="media-body mt-50">
                                             <h4 class="media-heading"><?php echo $this->session->userdata('nama_user'); ?></h4>
                                             <div class="col-12 d-flex mt-1 px-0">
-                                                <a class="btn btn-primary d-none d-sm-block mr-75"><input type="file" accept="image/*" style="position: absolute;
+                                            <?php
+	                            					foreach ($tampilakun as $baris) {  ?>
+                                            
+                                                <a class="btn btn-primary d-none d-sm-block mr-75"><input type="file" id="img" name="img" accept="image/*" style="position: absolute;
                                                     top: 0;
                                                     right: 0;
                                                     min-width: 100%;
@@ -50,14 +53,12 @@
                                     
                                         <div class="row">
                                             <div class="col-12">
-                                            <?php
-	                            					foreach ($tampilakun as $baris) {  ?>
                                                 <div class="form-group">
                                                     <div class="controls">
                                                         <label>Username</label>
                                                         <input type="text" class="form-control" name="username" placeholder="Username" value="<?php echo $baris->username; ?>" required data-validation-required-message="Username harus di isi">
                                                         <input type="hidden" class="form-control" name="id_user" placeholder="ERROR" value="<?php echo $baris->id_user; ?>">
-                                                        <input type="hidden" class="form-control" name="level_user" placeholder="ERROR" value="<?php echo $baris->level_user; ?>">
+
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -75,7 +76,8 @@
                                                 <div class="form-group">
                                                     <div class="controls">
                                                         <label>Password</label>
-                                                        <input type="password" class="form-control" name="password" placeholder="Password" value="<?php echo $baris->password; ?>" required data-validation-required-message="Password harus di isi">
+                                                        <input type="password" class="form-control" name="password" placeholder="Password">
+                                                        <span>*Kosongkan jika tidak diubah</span>
                                                     </div>
                                                 </div>
                                                 <?php }?>

@@ -64,6 +64,63 @@ class Admin extends CI_Controller {
 
     }
 
+	public function ubahdataakun()
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Ubah Data Akun - ';
+
+		$id_user = $this->session->userdata('id_user');
+		$data['tampilakun'] = $this->DatacenterModel->tampilakunadmin($id_user);
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminUbahData',$data);
+		$this->load->view('ViewFooterAdmin');
+
+	}
+
+	public function prosesubahadminuser()
+	{
+		    
+		    $this->load->model('DatacenterModel');
+		
+			$username = $this->input->post('username');
+            $password = $this->input->post('password');
+            $nama_user = $this->input->post('nama_user');
+			$email =$this->input->post('email');
+			$photo = "logounsoedlp3m.png";
+			$id_user = $this->input->post('id_user');
+			
+
+			$t=time();
+			$file_name = str_replace('.','',$t);
+			$config['upload_path']          = FCPATH.'/assets/images/';
+			$config['allowed_types']        = 'gif|jpg|jpeg|png';
+			$config['file_name']            = $file_name;
+			$config['overwrite']            = true;
+			$config['max_size']             = 1024; // 1MB
+			$config['max_width']            = 1080;
+			$config['max_height']           = 1080;
+
+			$this->load->library('upload', $config);
+
+			if (!$this->upload->do_upload('avatar')) {
+				$data['error'] = $this->upload->display_errors();
+				$photo ='';
+			} else {
+				$uploaded_data = $this->upload->data();
+
+				$photo = $uploaded_data['file_name'];
+			}
+
+			
+			$data = array($username,$password,$nama_user,$email,$photo,$id_user);
+			$this->DatacenterModel->ubahuseradmin1($data);
+			$this->session->set_userdata('nama_user',$nama_user);
+				
+			redirect('Admin/ubahdataakun');
+		
+    }
+
     public function user()
 	{
         $this->load->model('DatacenterModel');
@@ -175,8 +232,8 @@ class Admin extends CI_Controller {
 			$config['file_name']            = $file_name;
 			$config['overwrite']            = true;
 			$config['max_size']             = 1024; // 1MB
-			$config['max_width']            = 1080;
-			$config['max_height']           = 1080;
+			$config['max_width']            = 9080;
+			$config['max_height']           = 9080;
 
 			$this->load->library('upload', $config);
 
@@ -198,6 +255,8 @@ class Admin extends CI_Controller {
 			redirect('Admin/user');
 		
 	}
+
+	
 	
 	// Komponen Master
 	public function prosesor()
@@ -602,6 +661,35 @@ class Admin extends CI_Controller {
 		
     }
 
+	public function ubahruangan($id_ruangan)
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Ubah Ruangan - ';
+        $data['ubahruangan'] = $this->DatacenterModel->ubahruangan($id_ruangan);
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminUbahRuangan',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    }
+    
+    public function prosesubahruangan()
+	{
+		    
+		    $this->load->model('DatacenterModel');
+		
+			$nama = $this->input->post('nama_ruangan');
+			$id_ruangan = $this->input->post('id_ruangan');
+			
+
+			$data = array($nama,$id_ruangan);
+			$this->DatacenterModel->ubahruangan1($data);
+			
+			$this->session->set_flashdata('daftarberhasil','yes');		
+			redirect('Admin/ruangan');
+		
+	}
+
 	public function lemari()
 	{
         $this->load->model('DatacenterModel');
@@ -654,6 +742,40 @@ class Admin extends CI_Controller {
 		
     }
 
+	public function ubahlemari($id_lemari)
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Ubah Lemari - ';
+		$data['option'] = $this->DatacenterModel->tampilsemuaruangan();
+        $data['ubahlemari'] = $this->DatacenterModel->ubahlemari($id_lemari);
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminUbahLemari',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    }
+    
+    public function prosesubahlemari()
+	{
+		    
+		    $this->load->model('DatacenterModel');
+		
+			$nama = $this->input->post('nama_lemari');
+			$slotrack = $this->input->post('slotrack');
+			
+			$ruangan = $this->input->post('ruanganlemari');
+			$id_lemari = $this->input->post('id_lemari');
+			
+
+			$data = array($ruangan,$nama,$slotrack,$id_lemari);
+			$this->DatacenterModel->ubahlemari1($data);
+			
+			$this->session->set_flashdata('daftarberhasil','yes');		
+			redirect('Admin/lemari');
+		
+	}
+
+
 	public function rak()
 	{
         $this->load->model('DatacenterModel');
@@ -688,6 +810,37 @@ class Admin extends CI_Controller {
 
     }
 
+	public function ubahrak($id_rack)
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Ubah Rack - ';
+		$data['option'] = $this->DatacenterModel->tampilsemualemari();
+        $data['ubahrak'] = $this->DatacenterModel->ubahrak($id_rack);
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminUbahRak',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    }
+    
+    public function prosesubahrak()
+	{
+		    
+		    $this->load->model('DatacenterModel');
+		
+			$nama = $this->input->post('nama_rack');
+			
+			$lemari = $this->input->post('lemarirak');
+			$id_rack = $this->input->post('id_rack');
+			
+
+			$data = array($lemari,$nama,$id_rack);
+			$this->DatacenterModel->ubahrak1($data);
+			
+			$this->session->set_flashdata('daftarberhasil','yes');		
+			redirect('Admin/rak');
+		
+	}
 
     public function prosestambahrak()
 	{
@@ -728,6 +881,38 @@ class Admin extends CI_Controller {
 
         redirect("Admin/server");
     } 
+
+	public function ubahserver($id_server)
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Ubah Server - ';
+		$data['option'] = $this->DatacenterModel->tampilsemuarack();
+        $data['ubahserver'] = $this->DatacenterModel->ubahserver($id_server);
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminUbahServer',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    }
+    
+    public function prosesubahserver()
+	{
+		    
+		    $this->load->model('DatacenterModel');
+		
+			$nama = $this->input->post('nama_server');
+			
+			$rack = $this->input->post('rakserver');
+			$id_server = $this->input->post('id_server');
+			
+
+			$data = array($rack,$nama,$id_server);
+			$this->DatacenterModel->ubahserver1($data);
+			
+			$this->session->set_flashdata('daftarberhasil','yes');		
+			redirect('Admin/server');
+		
+	}
 
 	public function tambahserver()
 	{
@@ -820,6 +1005,45 @@ class Admin extends CI_Controller {
 		
     }
 
+	public function ubahvps($id_vps)
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Ubah VPS - ';
+		$data['option'] = $this->DatacenterModel->tampilsemuaserver();
+		$data['option2'] = $this->DatacenterModel->tampilsemuaprosesor();
+		$data['option3'] = $this->DatacenterModel->tampilsemuaram();
+		$data['option4'] = $this->DatacenterModel->tampiluser();
+        $data['ubahvps'] = $this->DatacenterModel->ubahvps($id_vps);
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminUbahVps',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    }
+    
+    public function prosesubahvps()
+	{
+		    
+		    $this->load->model('DatacenterModel');
+		
+			$server = $this->input->post('vpsserver');
+			$nama = $this->input->post('nama_vps');
+			$prosesor = $this->input->post('vpsprosesor');
+			$hdd = $this->input->post('ukuranhardisk');
+			$ram = $this->input->post('vpsram');
+			$os = $this->input->post('os');
+			$user = $this->input->post('vpsuser');
+			$id_vps = $this->input->post('id_vps');
+
+			
+			$data = array($server,$nama,$prosesor,$hdd,$ram,$os,$user,$id_vps);
+			$this->DatacenterModel->ubahvps1($data);
+			
+			$this->session->set_flashdata('daftarberhasil','yes');		
+			redirect('Admin/vps');
+		
+	}
+
 
 
 	public function sistem()
@@ -876,6 +1100,39 @@ class Admin extends CI_Controller {
 		
     }
 
+	public function ubahsistem($id_sistem)
+	{
+        $this->load->model('DatacenterModel');
+		$judul['title'] = 'Ubah Sistem - ';
+		$data['option'] = $this->DatacenterModel->tampilsemuavps();
+        $data['ubahsistem'] = $this->DatacenterModel->ubahsistem($id_sistem);
+
+        $this->load->view('ViewHeadAdmin',$judul);
+		$this->load->view('ViewAdminUbahSistem',$data);
+		$this->load->view('ViewFooterAdmin');
+
+    }
+    
+    public function prosesubahsistem()
+	{
+		    
+		    $this->load->model('DatacenterModel');
+		
+			$nama = $this->input->post('nama_sistem');
+			$alamat = $this->input->post('alamat');
+			$deskripsi = $this->input->post('deskripsi');
+			$tahun = $this->input->post('tahun');
+			$vps = $this->input->post('sistemvps');
+			$id_sistem = $this->input->post('id_sistem');
+			
+
+			$data = array($vps,$nama,$alamat,$deskripsi,$tahun,$id_sistem);
+			$this->DatacenterModel->ubahsistem1($data);
+			
+			$this->session->set_flashdata('daftarberhasil','yes');		
+			redirect('Admin/sistem');
+		
+	}
 
 
 	public function log()

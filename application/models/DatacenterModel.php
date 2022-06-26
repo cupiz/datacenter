@@ -123,6 +123,42 @@
               }
             }
 
+            public function ubahuseradmin1($data){
+              if ($data[4]=='') {
+                  if ($data[1]=='') {
+                    $this->db->query("update tb_user set username='$data[0]', nama_user='$data[2]',email='$data[3]' where id_user = '$data[5]' ");
+                  }else{
+                    $this->db->query("update tb_user set username='$data[0]', password=md5('$data[1]'), nama_user='$data[2]',email='$data[3]' where id_user = '$data[5]' ");
+                  }
+                 
+              }else{
+                if ($data[1]=='') {
+                  $this->db->query("update tb_user set username='$data[0]', nama_user='$data[2]',email='$data[3]',photo='$data[4]' where id_user = '$data[5]' ");
+                }else{
+                  $this->db->query("update tb_user set username='$data[0]', password=md5('$data[1]'), nama_user='$data[2]',email='$data[3]',photo='$data[4]' where id_user = '$data[5]' ");
+                }
+                
+              }
+            }
+            
+            public function ubahuserteknisi1($data){
+              if ($data[4]=='') {
+                  if ($data[1]=='') {
+                    $this->db->query("update tb_user set username='$data[0]', nama_user='$data[2]',email='$data[3]' where id_user = '$data[5]' ");
+                  }else{
+                    $this->db->query("update tb_user set username='$data[0]', password=md5('$data[1]'), nama_user='$data[2]',email='$data[3]' where id_user = '$data[5]' ");
+                  }
+                 
+              }else{
+                if ($data[1]=='') {
+                  $this->db->query("update tb_user set username='$data[0]', nama_user='$data[2]',email='$data[3]',photo='$data[4]' where id_user = '$data[5]' ");
+                }else{
+                  $this->db->query("update tb_user set username='$data[0]', password=md5('$data[1]'), nama_user='$data[2]',email='$data[3]',photo='$data[4]' where id_user = '$data[5]' ");
+                }
+                
+              }
+            }
+
             public function tampilhistoryuser($id_user){
               return $this->db->query("Select * from tb_log join tb_user on tb_log.id_user = tb_user.id_user where tb_user.id_user='$id_user' order by waktu desc")->result();
             }
@@ -131,7 +167,9 @@
                 return $this->db->query("Select * from tb_komponen")->result();
                 }
 
-
+            public function tampilsemuaprosesor(){
+              return $this->db->query("Select * from tb_prosesor")->result();
+              }
             public function tampilprosesor(){
               return $this->db->query("Select * from tb_prosesor join tb_server on tb_prosesor.id_server = tb_server.id_server join tb_rack on tb_server.id_rack = tb_rack.id_rack join tb_lemari on tb_rack.id_lemari = tb_lemari.id_lemari")->result();
               }
@@ -149,6 +187,10 @@
             public function ubahprosesor1($data){
                 $this->db->query("update tb_prosesor set id_server ='$data[0]', nama_prosesor='$data[1]',jml_core='$data[2]',ket_prosesor='$data[3]' where id_prosesor = '$data[4]' ");
             }
+
+            public function tampilsemuaram(){
+              return $this->db->query("Select * from tb_ram")->result();
+              }
 
             public function tampilram(){
               return $this->db->query("Select * from tb_ram join tb_server on tb_ram.id_server = tb_server.id_server join tb_rack on tb_server.id_rack = tb_rack.id_rack join tb_lemari on tb_rack.id_lemari = tb_lemari.id_lemari")->result();
@@ -218,6 +260,13 @@
               $this->db->query("insert into tb_lemari values('','$data[0]','$data[1]','$data[2]')");
             }
 
+            public function ubahlemari($id_lemari){
+              return $this->db->query("Select * from tb_lemari where id_lemari = '$id_lemari'")->result();
+              }
+            public function ubahlemari1($data){
+                $this->db->query("update tb_lemari set id_ruangan='$data[0]',nama_lemari='$data[1]',slotrack='$data[2]' where id_lemari = '$data[3]' ");
+            }
+
             public function tampiladminrak(){
               return $this->db->query("Select * from tb_rack 
                                       join tb_lemari on tb_rack.id_lemari = tb_lemari.id_lemari
@@ -229,11 +278,24 @@
               $this->db->query("insert into tb_rack values('','$data[0]','$data[1]')");
             }
 
+            public function ubahrak($id_rack){
+              return $this->db->query("Select * from tb_rack where id_rack = '$id_rack'")->result();
+              }
+            public function ubahrak1($data){
+                $this->db->query("update tb_rack set id_lemari='$data[0]',nama_rack='$data[1]' where id_rack = '$data[2]' ");
+            }
+
             //ruangan
             public function tambahruangan($data){
               $this->db->query("insert into tb_ruangan values('','$data[0]')");
             }
 
+            public function ubahruangan($id_ruangan){
+              return $this->db->query("Select * from tb_ruangan where id_ruangan = '$id_ruangan'")->result();
+              }
+            public function ubahruangan1($data){
+                $this->db->query("update tb_ruangan set nama_ruangan='$data[0]' where id_ruangan = '$data[1]' ");
+            }
 
             public function tampiladminserver(){
               return $this->db->query("Select * from tb_server 
@@ -244,6 +306,13 @@
 
             public function tambahserver($data){
               $this->db->query("insert into tb_server values('','$data[0]','$data[1]')");
+            }
+
+            public function ubahserver($id_server){
+              return $this->db->query("Select * from tb_server where id_server = '$id_server'")->result();
+              }
+            public function ubahserver1($data){
+                $this->db->query("update tb_server set id_rack='$data[0]',nama_server='$data[1]' where id_server = '$data[2]' ");
             }
 
             public function tampiladminvps(){
@@ -257,7 +326,14 @@
             
             public function tambahvps($data){
               $this->db->query("insert into tb_vps values('','$data[0]','$data[1]','$data[2]','$data[3]','$data[4]','$data[5]','$data[6]')");
-          }
+            }
+
+            public function ubahvps($id_vps){
+              return $this->db->query("Select * from tb_vps where id_vps = '$id_vps'")->result();
+              }
+            public function ubahvps1($data){
+                $this->db->query("update tb_vps set id_server ='$data[0]', nama_vps='$data[1]',prosesor_vps='$data[2]',ukuran_harddiskvps='$data[3]',ukuran_ramvps='$data[4]',os_vps='$data[5]',id_user='$data[6]' where id_vps = '$data[7]' ");
+            }
 
             public function tampiladminsistem(){
               return $this->db->query("Select * from tb_sistem 
@@ -267,7 +343,14 @@
 
             public function tambahsistem($data){
               $this->db->query("insert into tb_sistem values('','$data[0]','$data[1]','$data[2]','$data[3]','$data[4]')");
-          }
+            }
+            
+            public function ubahsistem($id_sistem){
+              return $this->db->query("Select * from tb_sistem where id_sistem = '$id_sistem'")->result();
+              }
+            public function ubahsistem1($data){
+                $this->db->query("update tb_sistem set id_vps ='$data[0]', nama_sistem='$data[1]',alamat_sistem='$data[2]',deskripsi='$data[3]',tahun='$data[4]' where id_sistem = '$data[5]' ");
+            }
 
             public function tampiladminlog(){
               return $this->db->query("Select * from tb_log 

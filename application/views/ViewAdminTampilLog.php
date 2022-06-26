@@ -60,7 +60,7 @@
                                     <td><?php echo $baris->aktivitas; ?></td>
                                     <td><?php echo $baris->waktu; ?></td>
                                     <td>
-                                                            <a class="badge badge-pill badge-info badge-glow" href="<?php echo base_url();?>Admin/ubahlog/<?php echo $baris->id_log; ?>">Ubah</a>
+                                                        <!--/    <a class="badge badge-pill badge-info badge-glow" href="<?php echo base_url();?>Admin/ubahlog/<?php echo $baris->id_log; ?>">Ubah</a> -->
                                                             <a class="badge badge-pill badge-danger badge-glow" href="<?php echo base_url();?>Admin/hapuslog/<?php echo $baris->id_log; ?>">Hapus</a>
                                     </td>
                                 </tr>
