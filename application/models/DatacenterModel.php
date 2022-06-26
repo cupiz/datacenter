@@ -62,6 +62,10 @@
           public function tampiljmlserver(){
               return $this->db->query("Select count(id_server) as jmlserver from tb_server")->result();
               }
+
+          public function tampiljmluser(){
+              return $this->db->query("Select count(id_user) as jmluser from tb_user")->result();
+              }
           
           public function tampiljmlsistem(){
               return $this->db->query("Select count(id_sistem) as jmlsistem from tb_sistem")->result();

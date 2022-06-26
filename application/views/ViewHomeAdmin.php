@@ -17,7 +17,13 @@
                                         <i class="feather icon-users text-primary font-medium-5"></i>
                                     </div>
                                 </div>
-                                <h2 class="text-bold-700 mt-1 mb-25">92</h2>
+                                <h2 class="text-bold-700 mt-1 mb-25">
+                                <?php
+                                foreach ($tampiluser as $user1) {                          
+                                    echo $user1->jmluser;
+                                }
+                                ?>                                
+                                </h2>
                                 <p class="mb-0">User</p>
                             </div>
                             <div class="card-content">
@@ -33,7 +39,14 @@
                                         <i class="fa fa-dot-circle-o text-warning font-medium-5"></i>
                                     </div>
                                 </div>
-                                <h2 class="text-bold-700 mt-1 mb-25">55</h2>
+                                <h2 class="text-bold-700 mt-1 mb-25">
+                                    <?php
+                                    foreach ($tampilsistem as $sistem) {                          
+                                        echo $sistem->jmlsistem;
+                                    }
+                                    ?>    
+
+                                </h2>
                                 <p class="mb-0">Sistem</p>
                             </div>
                             <div class="card-content">
@@ -50,7 +63,25 @@
                                         <i class="feather icon-cpu text-info font-medium-5"></i>
                                     </div>
                                 </div>
-                                <h2 class="text-bold-700 mt-1 mb-25">97</h2>
+                                <h2 class="text-bold-700 mt-1 mb-25">
+                                <?php
+                                $sum = 0;
+                                foreach ($jmlram as $baris):
+                                    $sum += $baris->ram;
+                                endforeach;
+                                foreach ($jmlstorage as $baris):
+                                    $sum += $baris->storage;
+                                endforeach;
+                                foreach ($jmlprosesor as $baris):
+                                    $sum += $baris->prosesor;
+                                endforeach;
+                                foreach ($jmlkabel as $baris):
+                                    $sum += $baris->kabel;
+                                endforeach;
+                                echo $sum;
+                                ?>    
+
+                                </h2>
                                 <p class="mb-0">Komponen</p>
                             </div>
                             <div class="card-content">
@@ -67,7 +98,14 @@
                                         <i class="fa fa-server text-success font-medium-5"></i>
                                     </div>
                                 </div>
-                                <h2 class="text-bold-700 mt-1 mb-25">17</h2>
+                                <h2 class="text-bold-700 mt-1 mb-25">
+                                <?php
+                                foreach ($tampilvps as $vps) {                          
+                                    echo $vps->jmlvps;
+                                }
+                                ?>    
+
+                                </h2>
                                 <p class="mb-0">VPS</p>
                             </div>
                             <div class="card-content">

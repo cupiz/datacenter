@@ -93,7 +93,7 @@
         <div class="navbar-header">
             <ul class="nav navbar-nav flex-row">
                 <li class="nav-item mr-auto"><a class="navbar-brand" href="<?php echo base_url();?>">
-                        <div class="logo"><img style="height: 25px; width: auto;" src="<?php echo base_url();?>assets/app-assets/images/logo/Logo.png"></div>
+                        <div class="logo"><img style="height: 25px; width: auto;" src="<?php echo base_url();?>assets/app-assets/images/logo/logo.png"></div>
                         
                     </a></li>
 

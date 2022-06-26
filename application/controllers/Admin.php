@@ -24,12 +24,21 @@ class Admin extends CI_Controller {
 	{
         $this->load->model('DatacenterModel');
 		$judul['title'] = 'Halaman Admin - ';
+		$data['tampiluser'] = $this->DatacenterModel->tampiljmluser();
+		$data['tampilserver'] = $this->DatacenterModel->tampiljmlserver();
+		$data['tampilvps'] = $this->DatacenterModel->tampiljmlvps();
+		$data['tampilsistem'] = $this->DatacenterModel->tampiljmlsistem();
+		$data['jmlram'] = $this->DatacenterModel->tampiljmlram();
+		$data['jmlstorage'] = $this->DatacenterModel->tampiljmlstorage();
+		$data['jmlkabel'] = $this->DatacenterModel->tampiljmlkabel();
+		$data['jmlprosesor'] = $this->DatacenterModel->tampiljmlprosesor();
+
 
 		$leveluser = $this->session->userdata('level_user');
 
 		if ($leveluser == '1'){
 			$this->load->view('ViewHeadAdmin',$judul);
-			$this->load->view('ViewHomeAdmin');
+			$this->load->view('ViewHomeAdmin',$data);
 			$this->load->view('ViewFooterAdmin');
 		}else if($leveluser == '2'){
 			redirect('Teknisi');
